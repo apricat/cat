@@ -10,6 +10,12 @@ var Locations = (function () {
 
 	var current = null;
 
+
+	/**
+	 * Display location
+	 * 
+	 * @return bool
+	 */
 	function display() {
 
 		Global.log( this.name + " kindda looks like dis..." );
@@ -20,6 +26,12 @@ var Locations = (function () {
 
 	}
 
+
+	/**
+	 * Encounter a wild cat!
+	 * 
+	 * @return bool
+	 */
 	function encounter() {
 
 		if (!this.cat) {
@@ -37,6 +49,12 @@ var Locations = (function () {
 
 	}
 
+
+	/**
+	 * Go to specific location. Will also manipulate time for travel.
+	 * 
+	 * @return bool
+	 */
 	function go() {
 
 		var distance = this.distance;
@@ -54,6 +72,13 @@ var Locations = (function () {
 
 	}
 
+
+	/**
+	 * Location object
+	 * @param string name     Name of location
+	 * @param int    distance Distance from home
+	 * @param obj    cat      Cat object found in location
+	 */
   	function Location( name, distance, cat ) {
 
   		this.name      = name;
@@ -65,6 +90,12 @@ var Locations = (function () {
 
 	}
 
+
+	/**
+	 * Initiate location class
+	 * 
+	 * @return
+	 */
 	function init() {
 
 		location[0] = new Location("Home", 0, null);

@@ -1,5 +1,10 @@
 <html>
 
+<head>
+	<title>Cat Dating Simulator :3</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
 <body>
 
 	<header><h1>Cat Dating Simulator</h1></header>
@@ -43,65 +48,10 @@
 	
 </body>
 
-<style>
-
-header, menu, aside {
-	position: relative;
-	z-index: 4;
-}
-
-section {
-	position: relative;
-	height: 900px;
-	width: 1200px;
-}
-
-#location {
-	width: 1200px;
-	height: 900px;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 0;
-}
-#location.home {
-	background: url('img/locations/home.jpg') no-repeat;
-}
-#location.alley {
-	background: url('img/locations/alley.jpg') no-repeat;
-}
-#location.garden {
-	background: url('img/locations/garden.jpg') no-repeat;
-}
-#location.terrasse {
-	background: url('img/locations/terrasse.jpg') no-repeat;
-}
-
-#cat {
-	width: 500px;
-	height: 500px;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	z-index: 1;
-}
-#cat.fatcat {
-	background: url('img/cats/fatcat.jpg') no-repeat;
-}
-#cat.cutecat {
-	background: url('img/cats/cutecat.jpg') no-repeat;
-}
-#cat.evilcat {
-	background: url('img/cats/evilcat.jpg') no-repeat;
-}
-#cat.shycat {
-	background: url('img/cats/shycat.jpg') no-repeat;
-}
-</style>
-
-<script src="global.js"></script>
-<script src="cats.js"></script>
-<script src="locations.js"></script>
-<script src="ui.js"></script>
+<script src="modules/global.js"></script>
+<script src="modules/cats.js"></script>
+<script src="modules/locations.js"></script>
+<script src="modules/ui.js"></script>
+<script src="modules/shop.js"></script>
 
 </html>

@@ -3,11 +3,6 @@ var Shop = (function () {
   	// privates
   	var basket = []; 
 
-  	function doSomethingPrivate() {
-    	//...
-  	}
-
-  	// Return an object exposed to the public
   	return { 
 
 		// Add items to our basket
@@ -37,14 +32,21 @@ var Shop = (function () {
 
 
 Shop.addItem({
-	item: "bread",
+	item: "Cat food",
 	price: 5
 });
 
 Shop.addItem({
-	item: "butter",
+	item: "Mouse toy",
 	price: 3
 });
 
-// Outputs: 2
-console.log( Shop.getItemCount() );
+Shop.addItem({
+	item: "Laser pointer",
+	price: 3
+});
+
+Shop.addItem({
+	item: "Mouse toy",
+	price: 3
+});
