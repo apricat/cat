@@ -37,6 +37,7 @@ var Locations = (function () {
 		if (!this.cat) {
 
 			Global.log( "This place is so sad without cats..." );
+			Ui.setCat("");
 			return false;
 
 		}

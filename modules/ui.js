@@ -60,7 +60,7 @@ var Ui = (function () {
 	 */
 	function setLocation( val ) {
 
-		document.getElementById(template.location).className = val
+		document.getElementById(template.location).className = val;
 
 	}
 
