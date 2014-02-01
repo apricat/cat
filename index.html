@@ -1,0 +1,107 @@
+<html>
+
+<body>
+
+	<header><h1>Cat Dating Simulator</h1></header>
+
+	<aside>
+		<time>
+			<span id="clock">00:00</span>
+			<span id="calendar">
+				<span id="month">Spring</span> <span id="day">1</span>, Year <span id="year">1</span>
+			</span>
+		</time>
+	</aside>
+
+	<menu>
+
+		<ul>
+			<li>
+				<em>Locations</em>
+				<ul>
+					<li><a href="#" onClick="Locations.location[0].go(); return false;" title="A small apartment">Home</a></li>
+					<li><a href="#" onClick="Locations.location[1].go(); return false;" title="A beautiful lush garden">Garden</a></li>
+					<li><a href="#" onClick="Locations.location[2].go(); return false;" title="A sketchy alley">Alley</a></li>
+					<li><a href="#" onClick="Locations.location[3].go(); return false;" title="A relaxing sunny spot">Terrasse</a></li>
+				</ul>
+			</li>
+			<li>
+				<em>Items</em>
+				<ul>
+					<li><a href="#" title="Cheap cat food bought at corner store">Cat food</a></li>
+					<li><a href="#" title="A toy that looks like a mouse">Toy mouse</a></li>
+				</ul>
+			</li>
+		</ul>
+
+	</menu>
+
+	<section>
+		<div id="location" class="home"></div>
+		<div id="cat"></div>
+	</section>
+	
+</body>
+
+<style>
+
+header, menu, aside {
+	position: relative;
+	z-index: 4;
+}
+
+section {
+	position: relative;
+	height: 900px;
+	width: 1200px;
+}
+
+#location {
+	width: 1200px;
+	height: 900px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+#location.home {
+	background: url('img/locations/home.jpg') no-repeat;
+}
+#location.alley {
+	background: url('img/locations/alley.jpg') no-repeat;
+}
+#location.garden {
+	background: url('img/locations/garden.jpg') no-repeat;
+}
+#location.terrasse {
+	background: url('img/locations/terrasse.jpg') no-repeat;
+}
+
+#cat {
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+}
+#cat.fatcat {
+	background: url('img/cats/fatcat.jpg') no-repeat;
+}
+#cat.cutecat {
+	background: url('img/cats/cutecat.jpg') no-repeat;
+}
+#cat.evilcat {
+	background: url('img/cats/evilcat.jpg') no-repeat;
+}
+#cat.shycat {
+	background: url('img/cats/shycat.jpg') no-repeat;
+}
+</style>
+
+<script src="global.js"></script>
+<script src="cats.js"></script>
+<script src="locations.js"></script>
+<script src="ui.js"></script>
+
+</html>
