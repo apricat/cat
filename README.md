@@ -1,4 +1,7 @@
-cat
+Cat
 ===
 
-Cat dating game
+Cat dating simulator game
+-------------------------
+
+by Claudine Lamothe

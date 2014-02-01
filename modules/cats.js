@@ -120,7 +120,7 @@ var Cats = (function () {
 
 		}
 
-		this.affection += config.likes;
+		this.affection += config.like;
 		this.petted     = true;
 
 		Global.log( this.name + " is very happy!");
