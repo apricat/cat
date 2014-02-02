@@ -61,9 +61,10 @@ var Inventory = (function () {
 
 
     /**
-     * [removeMoney description]
-     * @param  {[type]} qty [description]
-     * @return {[type]}     [description]
+     * Remove money
+     * 
+     * @param  int qty
+     * @return bool
      */
     function removeMoney( qty ) {
 
@@ -72,8 +73,22 @@ var Inventory = (function () {
         }
 
         money = money - qty;
+        Ui.refreshMoney();
         return true;
 
+    }
+
+
+    /**
+     * Add money
+     * 
+     * @param int qty
+     * @return bool
+     */
+    function addMoney( qty ) {
+        money += qty;
+        Ui.refreshMoney();
+        return false;
     }
 
 
@@ -103,13 +118,13 @@ var Inventory = (function () {
 
   	return { 
 
-  		getItems: function() {
-  			return inventory;
-  		},
+  		getItems : function() { return inventory; },
+        getMoney : function () { return money; },
 
   		init : init,
         transaction : transaction,
-        removeQty : removeQty
+        removeQty : removeQty,
+        addMoney : addMoney
 
   	};
 }());

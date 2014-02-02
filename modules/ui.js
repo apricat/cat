@@ -7,6 +7,7 @@ var Ui = (function () {
 
 	var template = {
 		"clock" : "clock",
+		"money" : "money",
 		"calendar" : {
 			"day" : "day",
 			"month" : "month",
@@ -30,7 +31,11 @@ var Ui = (function () {
 			refreshCalendar();
 		}, 1000);
 
+		// init menu
 		populateMenu();
+
+		// init monies
+		refreshMoney();
 
 	}
 
@@ -53,11 +58,11 @@ var Ui = (function () {
 
 			if (!items[item]["name"]) { break; }
 
-			document.getElementById(template.menu.shop).innerHTML += '<li><a href="#" name="buy" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="1" onClick="Ui.dispatchTransaction(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a></li>';
+			document.getElementById(template.menu.shop).innerHTML += '<li><a href="#" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="1" onClick="Ui.dispatchTransaction(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a></li>';
 			
 			if (items[item]["qty"] > 0) {
 			
-				document.getElementById(template.menu.inventory).innerHTML += '<li><a href="#" name="give" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="'+items[item]["qty"]+'" onClick="Ui.dispatchGifting(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a><span>'+ items[item]["qty"] +'</span></li>';
+				document.getElementById(template.menu.inventory).innerHTML += '<li><a href="#" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="'+items[item]["qty"]+'" onClick="Ui.dispatchGifting(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a><span>'+ items[item]["qty"] +'</span></li>';
 			
 			}
 
@@ -66,10 +71,21 @@ var Ui = (function () {
 		// populate location list
 		for (var i = 0; i < Locations.location.length; i++) {
 
-			document.getElementById(template.menu.location).innerHTML += '<li><a href="#" name="goto" onClick="Locations.location['+i+'].go(); return false;">'+ Locations.location[i]["name"] +'</a></li>';
+			document.getElementById(template.menu.location).innerHTML += '<li><a href="#" onClick="Locations.location['+i+'].go(); return false;">'+ Locations.location[i]["name"] +'</a></li>';
 		
 		}
 
+	}
+
+
+	/**
+	 * Refresh money
+	 * 
+	 * @return
+	 */
+	function refreshMoney() {
+		document.getElementById(template.money).innerHTML  = "";
+		document.getElementById(template.money).innerHTML += Inventory.getMoney();
 	}
 
 
@@ -173,7 +189,8 @@ var Ui = (function () {
   		setCat : setCat,
   		dispatchGifting : dispatchGifting,
   		dispatchTransaction : dispatchTransaction,
-  		populateMenu : populateMenu
+  		populateMenu : populateMenu,
+  		refreshMoney : refreshMoney
 
   	};
 
