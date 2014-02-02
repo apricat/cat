@@ -53,6 +53,10 @@ var Cats = (function () {
 
 			this.affection += config.love;
 
+			this.say( "prrr" );
+
+			this.given = true;
+
 			Global.log( this.name + " LOVES " + item + "!");
 
 			return false;
@@ -65,13 +69,19 @@ var Cats = (function () {
 
 			this.say( "hiisss" );
 
+			this.given = true;
+
 			Global.log( this.name + " HATES " + item + "!");
 
 			return false;
 
 		}
 
+		Global.log( this.name + " is content with your gift offering.");
+
 		this.affection += config.like;
+
+		this.given = true;
 
 		return false;
 

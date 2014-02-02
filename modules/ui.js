@@ -25,6 +25,8 @@ var Ui = (function () {
 			refreshCalendar();
 		}, 1000);
 
+		behaviours();
+
 	}
 
 
@@ -74,6 +76,52 @@ var Ui = (function () {
 	function setCat( val ) {
 
 		document.getElementById(template.cat).className = val;
+
+	}
+
+
+	/**
+	 * Behaviours on site
+	 * 
+	 * @return
+	 */
+	function behaviours() {
+
+		var elem = document.getElementsByName("give");
+
+		for (var i = 0; i < elem.length; i++) {
+
+			elem[i].addEventListener("click", function(e) {
+
+				e.preventDefault();
+
+				var qty  = parseInt(this.getAttribute("data-qty"), 10);
+				var item = this.getAttribute("data-item");
+
+				if (qty < 1) {
+					Global.log("No " + item + " to give :(");
+					return false;
+				}
+
+				Locations.handleGifting(item);
+				
+			}, false);
+
+		}
+
+		var elem = document.getElementsByName("pet");
+
+		for (var i = 0; i < elem.length; i++) {
+
+			elem[i].addEventListener("click", function(e) {
+
+				e.preventDefault();
+
+				Locations.handlePetting();
+				
+			}, false);
+
+		}
 
 	}
 

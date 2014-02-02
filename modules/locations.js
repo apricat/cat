@@ -28,6 +28,45 @@ var Locations = (function () {
 
 
 	/**
+	 * Handles gifting
+	 * 
+	 * @param  string item 
+	 * @return bool
+	 */
+	function handleGifting( item ) {
+
+		if (!current.cat) {
+			Global.log("There is no cat!");
+			return false;
+		}
+
+		current.cat.give(item);
+
+		return false;
+
+	}
+
+
+	/**
+	 * Handle cat petting
+	 * 
+	 * @return bool
+	 */
+	function handlePetting() {
+
+		if (!current.cat) {
+			Global.log("There is no cat!");
+			return false;
+		}
+
+		current.cat.pet();
+
+		return false;
+
+	}
+
+
+	/**
 	 * Encounter a wild cat!
 	 * 
 	 * @return bool
@@ -60,7 +99,7 @@ var Locations = (function () {
 
 		var distance = this.distance;
 
-		if (current !== "Home") {
+		if (current.name !== "Home") {
 			distance = this.distance + current.distance;
 		}
 
@@ -68,6 +107,8 @@ var Locations = (function () {
 
 		this.display();
 		this.encounter();
+
+		current = this;
 
 		return false;
 
@@ -111,7 +152,9 @@ var Locations = (function () {
   	return { 
 
   		init : init,
-  		location : location
+  		location : location,
+  		handleGifting : handleGifting,
+  		handlePetting : handlePetting
 
   	};
 
