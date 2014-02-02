@@ -85,6 +85,8 @@ var Global = (function () {
 	 */
 	function addTime( value ) {
 
+		Global.log( clock(value) + " hours added to the clock.");
+
 		if (currentTime + value > 86400) {
 
 			newDay(currentTime + value - 86400)
@@ -169,9 +171,11 @@ var Global = (function () {
 	 * 
 	 * @return string
 	 */
-	function clock() {
+	function clock( value ) {
 
-	    var sec     = parseInt(currentTime, 10),
+		if (!value) { value = currentTime; }
+
+	    var sec     = parseInt(value, 10),
 	    	hours   = Math.floor(sec / 3600),
 	    	minutes = Math.floor((sec - (hours * 3600)) / 60),
 	    	seconds = sec - (hours * 3600) - (minutes * 60);

@@ -8,6 +8,10 @@ var Players = (function () {
 
 	var player = {};
 
+	const STATUS_HEALTHY = 0;
+	const STATUS_SICK = 1;
+	const STATUS_TIRED = 2;
+
 
 	/**
 	 * Player object
@@ -27,6 +31,7 @@ var Players = (function () {
   		this.tire        = tire;
   		this.sleep       = sleep;
   		this.reccuperate = reccuperate;
+  		this.status      = STATUS_HEALTHY;
 
 	}
 
@@ -39,9 +44,11 @@ var Players = (function () {
 	function sleep() {
 
 		Global.log("You went to sleep...");
-		this.reccuperate(75);
+		this.reccuperate(100);
+		this.status = STATUS_HEALTHY;
+		Global.addTime(28800);
 		return false;
-		
+
 	}
 
 
@@ -54,14 +61,36 @@ var Players = (function () {
 	function tire( qty ) {
 
 		if (this.health <= 0) {
+
 			Global.log("You fainted!");
-			Global.addTime(43200);
+
+			// Additional time loss on top of forced sleep
+			Global.addTime(14400);
+
+			// Player sleeps and becomes sicks
+			this.sleep();
+			Global.log("You are sick :(");
+			this.status = STATUS_SICK;
+
 			return false;
+
 		}
 
 		if (this.health < qty) {
+
 			Global.log("Not enough energy to accomplish this action.")
 			return false;
+
+		}
+
+		// Warn user that health is becoming low
+		if (this.health <= 25 && this.status === STATUS_HEALTHY) { 
+			this.status = STATUS_TIRED; 
+		}
+
+		// Increase energy loss if sick
+		if (this.status === STATUS_SICK) {
+			qty = qty + 2;
 		}
 
 		this.health -= qty;
@@ -91,6 +120,8 @@ var Players = (function () {
 
 	/**
 	 * Go to work!
+	 *
+	 * @return bool
 	 */
 	function work() {
 

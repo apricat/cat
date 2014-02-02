@@ -197,13 +197,13 @@ var Cats = (function () {
 		cat[0] = new Cat("Fat Cat", 0, "Tuna", "Laser pointer");
 
 		// schedule: Tue-Wed-Fri-Sat | 9-17
-		cat[1] = new Cat("Cute Cat", -200, "Birds", "Mouse toy");
+		cat[1] = new Cat("Cute Cat", -40, "Birds", "Mouse toy");
 
 		// schedule: Mon-Sat-Sun | 20-0
-		cat[2] = new Cat("Evil Cat", -400, "Laser pointer", "Tuna");
+		cat[2] = new Cat("Evil Cat", -80, "Laser pointer", "Tuna");
 
 		// schedule: Wed-Thu-Sun | 11-16
-		cat[3] = new Cat("Shy Cat", -800, "Mouse toy", "Birds");
+		cat[3] = new Cat("Shy Cat", -160, "Mouse toy", "Birds");
 
 		return false;
 		

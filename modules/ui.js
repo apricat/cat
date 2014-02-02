@@ -84,9 +84,27 @@ var Ui = (function () {
 	}
 
 
+	/**
+	 * [refreshHealth description]
+	 * 
+	 * @return bool
+	 */
 	function refreshHealth() {
 
 		document.getElementById(template.health).style.width = Players.player().health + "%";
+
+		if (Players.player().status === 1) {
+			document.getElementById(template.health).style.background = "#FF0000";
+			return false;
+		}
+
+		if (Players.player().status === 2) {
+			document.getElementById(template.health).style.background = "#FFE100";
+			return false;
+		}
+
+		document.getElementById(template.health).style.background = "#000";
+		return false;
 
 	}
 

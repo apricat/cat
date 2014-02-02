@@ -120,7 +120,6 @@ var Inventory = (function () {
 
   		getItems : function() { return inventory; },
         getMoney : function () { return money; },
-
   		init : init,
         transaction : transaction,
         removeQty : removeQty,
