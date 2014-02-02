@@ -40,7 +40,9 @@ var Locations = (function () {
 			return false;
 		}
 
-		current.cat.give(item);
+		if (!current.cat.give(item)) {
+			return false;
+		};
 
 		return true;
 

@@ -12,7 +12,7 @@ var Global = (function () {
 
 
 	// Global time variables
-	var currentTime = 0,
+	var currentTime = 25200,
 		currentDate = 0,
 		months      = ["Spring", "Summer", "Fall", "Winter"];
 
@@ -44,6 +44,9 @@ var Global = (function () {
 		setInterval(function(){ 
 
 			currentTime += 600;
+
+			// trigger player energy loss
+			Players.player().tire(0.5);
 
 			// day has passed
 			if (currentTime >= 86400) {

@@ -59,7 +59,7 @@ var Cats = (function () {
 
 			Global.log( this.name + " LOVES " + item + "!");
 
-			return false;
+			return true;
 
 		}
 
@@ -73,7 +73,7 @@ var Cats = (function () {
 
 			Global.log( this.name + " HATES " + item + "!");
 
-			return false;
+			return true;
 
 		}
 
@@ -83,7 +83,7 @@ var Cats = (function () {
 
 		this.given = true;
 
-		return false;
+		return true;
 
 	}
 

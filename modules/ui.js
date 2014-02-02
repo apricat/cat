@@ -8,6 +8,7 @@ var Ui = (function () {
 	var template = {
 		"clock" : "clock",
 		"money" : "money",
+		"health" : "health",
 		"calendar" : {
 			"day" : "day",
 			"month" : "month",
@@ -29,6 +30,7 @@ var Ui = (function () {
 		setInterval(function(){ 
 			refreshClock();
 			refreshCalendar();
+			refreshHealth();
 		}, 1000);
 
 		// init menu
@@ -36,6 +38,9 @@ var Ui = (function () {
 
 		// init monies
 		refreshMoney();
+
+		// init clock
+		refreshClock();
 
 	}
 
@@ -47,6 +52,7 @@ var Ui = (function () {
 	 */
 	function populateMenu() {
 
+		// Clear menu
 		document.getElementById(template.menu.inventory).innerHTML = "";
 		document.getElementById(template.menu.shop).innerHTML = "";
 		document.getElementById(template.menu.location).innerHTML = "";
@@ -68,12 +74,19 @@ var Ui = (function () {
 
 		}
 
-		// populate location list
+		// Populate location list
 		for (var i = 0; i < Locations.location.length; i++) {
 
 			document.getElementById(template.menu.location).innerHTML += '<li><a href="#" onClick="Locations.location['+i+'].go(); return false;">'+ Locations.location[i]["name"] +'</a></li>';
 		
 		}
+
+	}
+
+
+	function refreshHealth() {
+
+		document.getElementById(template.health).style.width = Players.player().health + "%";
 
 	}
 
@@ -84,8 +97,10 @@ var Ui = (function () {
 	 * @return
 	 */
 	function refreshMoney() {
+
 		document.getElementById(template.money).innerHTML  = "";
-		document.getElementById(template.money).innerHTML += Inventory.getMoney();
+		document.getElementById(template.money).innerHTML += Inventory.getMoney() + "$";
+
 	}
 
 

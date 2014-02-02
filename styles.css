@@ -1,17 +1,45 @@
+html, body {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
 header, menu, aside {
 	position: relative;
 	z-index: 4;
 }
 
+menu {
+	position: absolute;
+	top: 10%;
+	right: 0;
+	width: 15%;
+	background: #FFF;
+}
+
 section {
-	position: relative;
-	height: 900px;
-	width: 1200px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+#health-container {
+	width: 50%;
+	height: 10px;
+}
+#health {
+	width: 100%;
+	height: 4px;
+	background: #000;
 }
 
 #location {
-	width: 1200px;
-	height: 900px;
+	width: 100%;
+	height: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -31,22 +59,24 @@ section {
 }
 
 #cat {
-	width: 500px;
-	height: 500px;
+	width: 50%;
+	height: 100%;
 	position: absolute;
 	right: 0;
 	bottom: 0;
 	z-index: 1;
+	background-position: right bottom;
+	background-repeat: no-repeat;
 }
 #cat.fatcat {
-	background: url('img/cats/fatcat.jpg') no-repeat;
+	background-image: url('img/cats/fatcat.jpg');
 }
 #cat.cutecat {
-	background: url('img/cats/cutecat.jpg') no-repeat;
+	background-image: url('img/cats/cutecat.jpg');
 }
 #cat.evilcat {
-	background: url('img/cats/evilcat.jpg') no-repeat;
+	background-image: url('img/cats/evilcat.jpg');
 }
 #cat.shycat {
-	background: url('img/cats/shycat.jpg') no-repeat;
+	background-image: url('img/cats/shycat.jpg');
 }
