@@ -23,23 +23,17 @@
 		<ul>
 			<li>
 				<em>Locations</em>
-				<ul>
-					<li><a href="#" onClick="Locations.location[0].go(); return false;" title="A small apartment">Home</a></li>
-					<li><a href="#" onClick="Locations.location[1].go(); return false;" title="A beautiful lush garden">Garden</a></li>
-					<li><a href="#" onClick="Locations.location[2].go(); return false;" title="A sketchy alley">Alley</a></li>
-					<li><a href="#" onClick="Locations.location[3].go(); return false;" title="A relaxing sunny spot">Terrasse</a></li>
-				</ul>
+				<ul id="menu-location"></ul>
 			</li>
 			<li>
-				<em>Items</em>
-				<ul>
-					<li><a href="#" name="give" data-item="Cat Food" data-qty="1" title="Cheap cat food bought at corner store">Cat food</a></li>
-					<li><a href="#" name="give" data-item="Toy mouse" data-qty="1" title="A toy that looks like a mouse">Toy mouse</a></li>
-					<li><a href="#" name="give" data-item="Laser pointer" data-qty="1">Laser pointer</a></li>
-					<li><a href="#" name="give" data-item="Tuna" data-qty="1">Tuna</a></li>
-				</ul>
+				<em>Shop</em>
+				<ul id="menu-shop"></ul>
 			</li>
-			<li><a href="#" name="pet">Pet cat</a></li>
+			<li>
+				<em>Give</em>
+				<ul id="menu-inventory"></ul>
+			</li>
+			<li><a href="#" name="pet" onClick="Locations.handlePetting(); return false;">Pet cat</a></li>
 		</ul>
 
 	</menu>
@@ -54,7 +48,9 @@
 <script src="modules/global.js"></script>
 <script src="modules/cats.js"></script>
 <script src="modules/locations.js"></script>
+<script src="modules/inventory.js"></script>
 <script src="modules/ui.js"></script>
-<script src="modules/shop.js"></script>
+
+<script src="modules/player.js"></script>
 
 </html>

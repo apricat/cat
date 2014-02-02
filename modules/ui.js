@@ -13,8 +13,13 @@ var Ui = (function () {
 			"year" : "year"
 		},
 		"location" : "location",
-		"cat" : "cat"
-		
+		"cat" : "cat",
+		"menu" : {
+			"location" : "menu-location",
+			"pet" : "menu-pet",
+			"inventory" : "menu-inventory",
+			"shop" : "menu-shop"
+		}
 	}
 
 
@@ -25,8 +30,90 @@ var Ui = (function () {
 			refreshCalendar();
 		}, 1000);
 
-		behaviours();
+		populateMenu();
 
+	}
+
+
+	/**
+	 * Populate UI menu
+	 * 
+	 * @return
+	 */
+	function populateMenu() {
+
+		document.getElementById(template.menu.inventory).innerHTML = "";
+		document.getElementById(template.menu.shop).innerHTML = "";
+		document.getElementById(template.menu.location).innerHTML = "";
+
+		// Populate inventory
+		var items = Inventory.getItems();
+
+		for (var item in items) {
+
+			if (!items[item]["name"]) { break; }
+
+			document.getElementById(template.menu.shop).innerHTML += '<li><a href="#" name="buy" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="1" onClick="Ui.dispatchTransaction(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a></li>';
+			
+			if (items[item]["qty"] > 0) {
+			
+				document.getElementById(template.menu.inventory).innerHTML += '<li><a href="#" name="give" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="'+items[item]["qty"]+'" onClick="Ui.dispatchGifting(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a><span>'+ items[item]["qty"] +'</span></li>';
+			
+			}
+
+		}
+
+		// populate location list
+		for (var i = 0; i < Locations.location.length; i++) {
+
+			document.getElementById(template.menu.location).innerHTML += '<li><a href="#" name="goto" onClick="Locations.location['+i+'].go(); return false;">'+ Locations.location[i]["name"] +'</a></li>';
+		
+		}
+
+	}
+
+
+	/**
+	 * Dispatches location gifting
+	 * 
+	 * @param obj elem
+	 * @return bool
+	 */
+	function dispatchGifting(elem) {
+
+		var qty = elem.getAttribute("data-qty");
+		var item = elem.getAttribute("data-item");
+
+		if (qty < 1) {
+			return false;
+		}
+
+		// Validates with location if cat available
+		if (!Locations.handleGifting(item)) {
+			return false;
+		}
+
+		// Removes item from inventory
+		Inventory.removeQty(item, 1);
+		return false;
+
+	}
+
+
+	/**
+	 * Dispatches inventory transaction
+	 * 
+	 * @param  obj elem 
+	 * @return bool
+	 */
+	function dispatchTransaction(elem) {
+
+		var qty = elem.getAttribute("data-qty");
+		var item = elem.getAttribute("data-item");
+
+		Inventory.transaction(item, qty);
+
+		return false;
 	}
 
 
@@ -79,58 +166,14 @@ var Ui = (function () {
 
 	}
 
-
-	/**
-	 * Behaviours on site
-	 * 
-	 * @return
-	 */
-	function behaviours() {
-
-		var elem = document.getElementsByName("give");
-
-		for (var i = 0; i < elem.length; i++) {
-
-			elem[i].addEventListener("click", function(e) {
-
-				e.preventDefault();
-
-				var qty  = parseInt(this.getAttribute("data-qty"), 10);
-				var item = this.getAttribute("data-item");
-
-				if (qty < 1) {
-					Global.log("No " + item + " to give :(");
-					return false;
-				}
-
-				Locations.handleGifting(item);
-				
-			}, false);
-
-		}
-
-		var elem = document.getElementsByName("pet");
-
-		for (var i = 0; i < elem.length; i++) {
-
-			elem[i].addEventListener("click", function(e) {
-
-				e.preventDefault();
-
-				Locations.handlePetting();
-				
-			}, false);
-
-		}
-
-	}
-
-
 	return { 
 
   		init : init,
   		setLocation : setLocation,
-  		setCat : setCat
+  		setCat : setCat,
+  		dispatchGifting : dispatchGifting,
+  		dispatchTransaction : dispatchTransaction,
+  		populateMenu : populateMenu
 
   	};
 

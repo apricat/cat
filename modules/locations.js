@@ -42,7 +42,7 @@ var Locations = (function () {
 
 		current.cat.give(item);
 
-		return false;
+		return true;
 
 	}
 
@@ -115,6 +115,11 @@ var Locations = (function () {
 	}
 
 
+	function getCurrent() {
+		return current;
+	}
+
+
 	/**
 	 * Location object
 	 * @param string name     Name of location
@@ -153,6 +158,7 @@ var Locations = (function () {
 
   		init : init,
   		location : location,
+  		current : function() { return getCurrent(); },
   		handleGifting : handleGifting,
   		handlePetting : handlePetting
 
