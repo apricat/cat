@@ -1,8 +1,5 @@
-Cat
-===
-
-Cat dating simulator game
--------------------------
+Cat Dating Simulator
+--------------------
 
 *by Claudine Lamothe*
 
@@ -11,3 +8,5 @@ Cat dating simulator game
 * Go to work in order to make money and buy new cat treats and toys
 * Sleep so you don't faint...
 * Buy new items from the store to win a cat's love!
+
+**Cat Dating Simulator is still very much in progress!**
