@@ -110,8 +110,6 @@ var Global = (function () {
 	 */
 	function resets() {
 
-		log("Resets activated.");
-
 		Cats.resets();
 
 		return false;

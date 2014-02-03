@@ -18,7 +18,7 @@ var Locations = (function () {
 	 */
 	function display() {
 
-		Ui.setLocation(this.name);
+		Ui.setLocation(this.name.toLowerCase());
 
 		return false;
 
@@ -84,6 +84,7 @@ var Locations = (function () {
 		Global.log( "You encounter a wild " + this.cat.name );
 
 		Ui.setCat(this.cat.name.replace(/ /g,'').toLowerCase());
+		Ui.setHeart(this.cat);
 
 		return false;
 

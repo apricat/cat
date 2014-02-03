@@ -99,3 +99,72 @@ footer {
 #cat.shycat {
 	background-image: url('img/cats/shycat.jpg');
 }
+
+#heart{
+     position: absolute;
+     bottom: 20%;
+     right: 25%;
+     z-index: 4; 
+     width: 100px; 
+     height: 90px;
+     margin-top:10px;
+}
+#heart:before, #heart:after{
+    position: absolute; 
+    content: ""; 
+    left: 54px; 
+    top: 0; 
+    width: 52px;
+    height: 80px; 
+    background: #000;
+    border-radius: 50px 50px 0 0;
+    -webkit-animation: pulse 1.5s infinite ease-in-out;
+}
+#heart.ok:before, #heart.ok:after {
+	background: #2200FF;
+}
+#heart.like:before, #heart.like:after {
+	background: #9000FF;
+}
+#heart.love:before, #heart.love:after {
+	background: #FF0084;
+}
+#heart:before{
+    -webkit-transform: rotate(-45deg);
+       -moz-transform: rotate(-45deg); 
+        -ms-transform: rotate(-45deg); 
+         -o-transform: rotate(-45deg); 
+            transform: rotate(-45deg); 
+    -webkit-transform-origin: 0 100%;
+       -moz-transform-origin: 0 100%; 
+        -ms-transform-origin: 0 100%; 
+         -o-transform-origin: 0 100%; 
+            transform-origin: 0 100%;
+}
+#heart:after { 
+    left: 0;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg); 
+        -ms-transform: rotate(45deg); 
+         -o-transform: rotate(45deg); 
+            transform: rotate(45deg); 
+    -webkit-transform-origin: 100% 100%;
+       -moz-transform-origin: 100% 100%; 
+        -ms-transform-origin: 100% 100%; 
+         -o-transform-origin: 100% 100%; 
+            transform-origin: 100% 100%; 
+}
+@-webkit-keyframes pulse {
+	0% {
+		width: 52px;
+		height: 80px;
+	}
+	50% {
+		width: 56px;
+		height: 84px;
+	}
+	100% {
+		width: 52px;
+		height: 80px;
+	}
+}

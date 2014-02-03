@@ -151,8 +151,6 @@ var Cats = (function () {
 			Cats.cat[i].petted = false;
 			Cats.cat[i].given  = false;
 
-			Global.log(Cats.cat[i].name + " resetted.");
-
 		}
 		return false;
 
@@ -194,7 +192,7 @@ var Cats = (function () {
 	function init() {
 
 		// schedule: Mon-Tue-Wed-Fri | 12-21
-		cat[0] = new Cat("Fat Cat", 0, "Tuna", "Laser pointer");
+		cat[0] = new Cat("Fat Cat", 76, "Tuna", "Laser pointer");
 
 		// schedule: Tue-Wed-Fri-Sat | 9-17
 		cat[1] = new Cat("Cute Cat", -40, "Birds", "Mouse toy");

@@ -22,7 +22,8 @@ var Ui = (function () {
 			"inventory" : "menu-inventory",
 			"shop" : "menu-shop"
 		},
-		"log" : "log"
+		"log" : "log",
+		"heart" : "heart"
 	}
 
 
@@ -110,6 +111,42 @@ var Ui = (function () {
 	}
 
 
+	/**
+	 * [setHeart description]
+	 * @param {[type]} cat [description]
+	 */
+	function setHeart(cat) {
+
+		if (!cat) {
+			return false;
+		}
+
+		document.getElementById(template.heart).style.display = "block";
+
+		if (cat.affection < 25) {
+			document.getElementById(template.heart).className = "dislike";
+			return false;
+		}
+		if (cat.affection < 50) {
+			document.getElementById(template.heart).className = "ok";
+			return false;
+		}
+		if (cat.affection < 75) {
+			document.getElementById(template.heart).className = "like";
+			return false;
+		}
+		
+		document.getElementById(template.heart).className = "love";
+		return false;
+		
+	}
+
+
+	/**
+	 * [log description]
+	 * @param  {[type]} data [description]
+	 * @return {[type]}      [description]
+	 */
 	function log(data) {
 
 		var log = document.getElementById(template.log);
@@ -222,6 +259,10 @@ var Ui = (function () {
 	 */
 	function setCat( val ) {
 
+		if (!val) {
+			document.getElementById(template.heart).style.display = "none";
+		}
+		
 		document.getElementById(template.cat).className = val;
 
 	}
@@ -235,7 +276,8 @@ var Ui = (function () {
   		dispatchTransaction : dispatchTransaction,
   		populateMenu : populateMenu,
   		refreshMoney : refreshMoney,
-  		log : log
+  		log : log,
+  		setHeart : setHeart
 
   	};
 
