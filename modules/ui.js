@@ -21,7 +21,8 @@ var Ui = (function () {
 			"pet" : "menu-pet",
 			"inventory" : "menu-inventory",
 			"shop" : "menu-shop"
-		}
+		},
+		"log" : "log"
 	}
 
 
@@ -104,6 +105,16 @@ var Ui = (function () {
 		}
 
 		document.getElementById(template.health).style.background = "#000";
+		return false;
+
+	}
+
+
+	function log(data) {
+
+		var log = document.getElementById(template.log);
+		log.innerHTML += "<div>" + data + "</div>";
+		log.scrollTop = log.scrollHeight;
 		return false;
 
 	}
@@ -223,7 +234,8 @@ var Ui = (function () {
   		dispatchGifting : dispatchGifting,
   		dispatchTransaction : dispatchTransaction,
   		populateMenu : populateMenu,
-  		refreshMoney : refreshMoney
+  		refreshMoney : refreshMoney,
+  		log : log
 
   	};
 

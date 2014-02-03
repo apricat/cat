@@ -7,7 +7,7 @@ var Global = (function () {
 
 
 	var config = {
-		"debug" : true
+		"debug" : false
 	}
 
 
@@ -27,7 +27,10 @@ var Global = (function () {
 
 		if (config.debug) {
 			console.log( data );
+			return false;
 		}
+
+		Ui.log(data);
 
 		return false;
 

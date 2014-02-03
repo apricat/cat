@@ -11,6 +11,10 @@ header, menu, aside {
 	z-index: 4;
 }
 
+aside {
+	background: #FFF;
+}
+
 menu {
 	position: absolute;
 	top: 10%;
@@ -25,6 +29,21 @@ section {
 	left: 0;
 	height: 100%;
 	width: 100%;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 4;
+}
+#log {
+	overflow-y: scroll;
+	height: 60px;
+	background: #FFF;
+}
+#log div {
+	height: auto;
 }
 
 #health-container {

@@ -18,8 +18,6 @@ var Locations = (function () {
 	 */
 	function display() {
 
-		Global.log( this.name + " kindda looks like dis..." );
-
 		Ui.setLocation(this.name);
 
 		return false;

@@ -10,18 +10,23 @@ var Inventory = (function () {
   		"mousetoy" : {
   			"name"  : "Mouse toy",
   			"value" : 5,
-  			"qty"   : 1
+  			"qty"   : 0
   		},
   		"tuna" : {
   			"name"  : "Tuna",
   			"value" : 5,
-  			"qty"   : 1
+  			"qty"   : 0
   		},
   		"birds" : {
   			"name"  : "Birds",
   			"value" : 25,
-  			"qty"   : 1
+  			"qty"   : 0
   		},
+        "caviar" : {
+            "name" : "Caviar",
+            "value" : 200,
+            "qty"   : 0
+        }
   	};
 
     var money = 20;
