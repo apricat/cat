@@ -210,7 +210,8 @@ var Global = (function () {
   		getMonth : function() { return calendar(); },
   		getYear  : function() { return year(); },
   		log      : log,
-  		addTime  : addTime
+  		addTime  : addTime,
+  		currentTime : function() { return currentTime; }
 
   	};
 

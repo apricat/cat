@@ -179,6 +179,8 @@ var Ui = (function () {
 
 		$("a").attr("disabled", "disabled");
 
+		$(container).find("p").text("");
+
 		paused = true;
 
 		$(container).show();

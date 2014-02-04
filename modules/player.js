@@ -26,7 +26,7 @@ var Players = (function () {
   		this.appearance  = appearance;
   		this.cat         = cat;
   		this.work        = work;
-  		this.job         = { "title" : "waitress", "wage" : 6, "shift" : 4, "energy" : 60 };
+  		this.job         = { "title" : "waitress", "wage" : 6, "shift" : 4, "energy" : 60, "startsAt" : 10 };
   		this.health      = 100;
   		this.tire        = tire;
   		this.sleep       = sleep;
@@ -124,6 +124,12 @@ var Players = (function () {
 	 * @return bool
 	 */
 	function work() {
+
+		if (Global.currentTime() > (this.job.startsAt + this.job.shift + 1) * 60 * 60 || 
+			Global.currentTime() < (this.job.startsAt - 1) * 60 * 60) {
+			Global.log("You cannot attend work outside of work hours.");
+			return false;
+		}
 
 		if (!this.tire(this.job.energy)) {
 			return false;
