@@ -125,6 +125,13 @@ var Players = (function () {
 	 */
 	function work() {
 
+		var location = Locations.current();
+
+		if (location.name !== "Home") {
+			Global.log("You must head home first.");
+			return false;
+		}
+
 		if (Global.currentTime() > (this.job.startsAt + this.job.shift + 1) * 60 * 60 || 
 			Global.currentTime() < (this.job.startsAt - 1) * 60 * 60) {
 			Global.log("You cannot attend work outside of work hours.");

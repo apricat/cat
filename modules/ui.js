@@ -335,7 +335,9 @@ var Ui = (function () {
 			$(template.heart).css("display", "none");
 		}
 
-		$(template.cat).attr("class", val);
+		$(template.cat).removeClass("fatcat evilcat cutecat");
+
+		window.setTimeout(function() { $(template.cat).addClass(val); }, 600);
 
 	}
 

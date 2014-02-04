@@ -148,10 +148,10 @@ var Cats = (function () {
 	 */
 	function resets() {
 
-		for ( var i = 0; i < Cats.cat.length; i++ ) {
+		for ( var i = 0; i < cat.length; i++ ) {
 
-			Cats.cat[i].petted = false;
-			Cats.cat[i].given  = false;
+			cat[i].petted = false;
+			cat[i].given  = false;
 
 		}
 		return false;

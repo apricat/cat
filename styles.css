@@ -85,27 +85,56 @@ footer {
 	background: url('img/locations/terrasse.jpg') no-repeat;
 }
 
-#cat {
+.cat {
 	width: 50%;
 	height: 100%;
 	position: absolute;
-	right: 0;
+	right: -100%;
 	bottom: 0;
 	z-index: 1;
 	background-position: right bottom;
 	background-repeat: no-repeat;
+	opacity: 0;
+	transition: right 0.6s ease-in;
+    -ms-transition: right 0.6s ease-in;
+    -moz-transition: right 0.6s ease-in;
+    -webkit-transition: right 0.6s ease-in;
 }
-#cat.fatcat {
+.cat.fatcat {
 	background-image: url('img/cats/fatcat.jpg');
+	right: 0;
+	opacity: 1;
+	transition: right 0.6s ease-in;
+    -ms-transition: right 0.6s ease-in;
+    -moz-transition: right 0.6s ease-in;
+    -webkit-transition: right 0.6s ease-in;
 }
-#cat.cutecat {
+.cat.cutecat {
 	background-image: url('img/cats/cutecat.jpg');
+	right: 0;
+	opacity: 1;
+	transition: right 0.6s ease-in;
+    -ms-transition: right 0.6s ease-in;
+    -moz-transition: right 0.6s ease-in;
+    -webkit-transition: right 0.6s ease-in;
 }
-#cat.evilcat {
+.cat.evilcat {
 	background-image: url('img/cats/evilcat.jpg');
+	right: 0;
+	opacity: 1;
+	transition: right 0.6s ease-in;
+    -ms-transition: right 0.6s ease-in;
+    -moz-transition: right 0.6s ease-in;
+    -webkit-transition: right 0.6s ease-in;
 }
-#cat.shycat {
+.cat.shycat {
 	background-image: url('img/cats/shycat.jpg');
+	right: 0;
+	opacity: 1;
+	transition: right 0.6s ease-in;
+    -ms-transition: right 0.6s ease-in;
+    -moz-transition: right 0.6s ease-in;
+    -webkit-transition: right 0.6s ease-in;
 }
 
 .dialog {
