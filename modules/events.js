@@ -1,8 +1,8 @@
   var Events = (function () {
 
-      function listener() {
+      function listener( cat ) {
 
-        
+        // trigger certain events at milestones with cats
 
       }
 
@@ -10,7 +10,8 @@
 
     	return { 
 
-    		init : init
+    		init : init,
+        listener: listener
 
     	};
   }());

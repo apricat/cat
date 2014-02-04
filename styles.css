@@ -37,6 +37,14 @@ footer {
 	width: 100%;
 	z-index: 4;
 }
+
+.daytime {
+	background: rgba(255, 255, 255, 0);
+}
+.nighttime {
+	background: rgba(0, 0, 0, 0.6);
+}
+
 #log {
 	overflow-y: scroll;
 	height: 60px;
@@ -100,6 +108,22 @@ footer {
 	background-image: url('img/cats/shycat.jpg');
 }
 
+.dialog {
+	position: absolute;
+	top: 20%;
+	left: 20%;
+	width: 20%;
+	background: #FFF;
+	display: none;
+	z-index: 4;
+	padding: 14px;
+	-webkit-animation: bounce 1.5s infinite ease-in-out;
+}
+.dialog.right {
+	left: auto;
+	right: 20%;
+}
+
 #heart{
      position: absolute;
      bottom: 20%;
@@ -154,6 +178,7 @@ footer {
          -o-transform-origin: 100% 100%; 
             transform-origin: 100% 100%; 
 }
+
 @-webkit-keyframes pulse {
 	0% {
 		width: 52px;
@@ -166,5 +191,16 @@ footer {
 	100% {
 		width: 52px;
 		height: 80px;
+	}
+}
+@-webkit-keyframes bounce {
+	0% {
+		margin-top: 0px;
+	}
+	50% {
+		margin-top: 4px;
+	}
+	100% {
+		margin-top: 0px;
 	}
 }

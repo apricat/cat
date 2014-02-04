@@ -53,7 +53,7 @@ var Cats = (function () {
 
 			this.affection += config.love;
 
-			this.say( "prrr" );
+			this.say( "Prrr" );
 
 			this.given = true;
 
@@ -67,7 +67,7 @@ var Cats = (function () {
 
 			this.affection -= config.hate;
 
-			this.say( "hiisss" );
+			this.say( "Hisss" );
 
 			this.given = true;
 
@@ -76,6 +76,8 @@ var Cats = (function () {
 			return true;
 
 		}
+
+		this.say( "Miaw" );
 
 		Global.log( this.name + " is content with your gift offering.");
 
@@ -96,7 +98,7 @@ var Cats = (function () {
 	 */
 	function say( dialog ) {
 
-		Global.log( dialog );
+		Ui.dialog( dialog , "#cat-dialog" );
 
 		return false;
 
@@ -112,7 +114,7 @@ var Cats = (function () {
 
 		if ( this.affection < config.affection ) {
 
-			this.say( "hiisss" );
+			this.say( "Hisss" );
 
 			Global.log( this.name + "'s affection level is not high enough yet...");
 

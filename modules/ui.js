@@ -6,26 +6,34 @@
 var Ui = (function () {
 
 	var template = {
-		"clock" : "clock",
-		"money" : "money",
-		"health" : "health",
+		"clock" : "#clock",
+		"money" : "#money",
+		"health" : "#health",
 		"calendar" : {
-			"day" : "day",
-			"month" : "month",
-			"year" : "year"
+			"day" : "#day",
+			"month" : "#month",
+			"year" : "#year"
 		},
-		"location" : "location",
-		"cat" : "cat",
+		"location" : "#location",
+		"cat" : "#cat",
 		"menu" : {
-			"location" : "menu-location",
-			"pet" : "menu-pet",
-			"inventory" : "menu-inventory",
-			"shop" : "menu-shop"
+			"location" : "#menu-location",
+			"pet" : "#menu-pet",
+			"inventory" : "#menu-inventory",
+			"shop" : "#menu-shop"
 		},
-		"log" : "log",
-		"heart" : "heart"
+		"log" : "#log",
+		"heart" : "#heart",
+		"dialog" : {
+			"container" : ".dialog",
+			"text" : ".dialog p",
+			"cat" : {
+				"title" : ".dialog h4"
+			}
+		}
 	}
 
+	var paused = false;
 
 	function init() {
 
@@ -44,6 +52,25 @@ var Ui = (function () {
 		// init clock
 		refreshClock();
 
+		behaviours();
+
+	}
+
+
+	function behaviours() {
+
+		$(document).on("keypress", function(e){
+
+			e.preventDefault();
+
+			if (e.which === 13) {
+				$("a").removeAttr("disabled");
+				$(template.dialog.container).hide();
+				paused = false;
+			}
+
+		});
+
 	}
 
 
@@ -55,9 +82,9 @@ var Ui = (function () {
 	function populateMenu() {
 
 		// Clear menu
-		document.getElementById(template.menu.inventory).innerHTML = "";
-		document.getElementById(template.menu.shop).innerHTML = "";
-		document.getElementById(template.menu.location).innerHTML = "";
+		$(template.menu.inventory).html("");
+		$(template.menu.shop).html("");
+		$(template.menu.location).html("");
 
 		// Populate inventory
 		var items = Inventory.getItems();
@@ -66,11 +93,11 @@ var Ui = (function () {
 
 			if (!items[item]["name"]) { break; }
 
-			document.getElementById(template.menu.shop).innerHTML += '<li><a href="#" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="1" onClick="Ui.dispatchTransaction(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a></li>';
+			$(template.menu.shop).append('<li><a href="#" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="1" onClick="Ui.dispatchTransaction(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a></li>');
 			
 			if (items[item]["qty"] > 0) {
 			
-				document.getElementById(template.menu.inventory).innerHTML += '<li><a href="#" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="'+items[item]["qty"]+'" onClick="Ui.dispatchGifting(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a><span>'+ items[item]["qty"] +'</span></li>';
+				$(template.menu.inventory).append('<li><a href="#" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="'+items[item]["qty"]+'" onClick="Ui.dispatchGifting(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a><span>'+ items[item]["qty"] +'</span></li>');
 			
 			}
 
@@ -79,7 +106,7 @@ var Ui = (function () {
 		// Populate location list
 		for (var i = 0; i < Locations.location.length; i++) {
 
-			document.getElementById(template.menu.location).innerHTML += '<li><a href="#" onClick="Locations.location['+i+'].go(); return false;">'+ Locations.location[i]["name"] +'</a></li>';
+			$(template.menu.location).append('<li><a href="#" onClick="Locations.location['+i+'].go(); return false;">'+ Locations.location[i]["name"] +'</a></li>');
 		
 		}
 
@@ -93,19 +120,19 @@ var Ui = (function () {
 	 */
 	function refreshHealth() {
 
-		document.getElementById(template.health).style.width = Players.player().health + "%";
+		$(template.health).css("width", Players.player().health + "%");
 
 		if (Players.player().status === 1) {
-			document.getElementById(template.health).style.background = "#FF0000";
+			$(template.health).attr("class", "tired");
 			return false;
 		}
 
 		if (Players.player().status === 2) {
-			document.getElementById(template.health).style.background = "#FFE100";
+			$(template.health).attr("class", "sick")
 			return false;
 		}
 
-		document.getElementById(template.health).style.background = "#000";
+		$(template.health).attr("class", "healthy");
 		return false;
 
 	}
@@ -121,25 +148,67 @@ var Ui = (function () {
 			return false;
 		}
 
-		document.getElementById(template.heart).style.display = "block";
+		$(template.heart).css("display", "block");
 
 		if (cat.affection < 25) {
-			document.getElementById(template.heart).className = "dislike";
+			$(template.heart).attr("class", "dislike");
 			return false;
 		}
 		if (cat.affection < 50) {
-			document.getElementById(template.heart).className = "ok";
+			$(template.heart).attr("class", "ok");
 			return false;
 		}
 		if (cat.affection < 75) {
-			document.getElementById(template.heart).className = "like";
+			$(template.heart).attr("class", "like");
 			return false;
 		}
 		
-		document.getElementById(template.heart).className = "love";
+		$(template.heart).attr("class", "love");
 		return false;
 		
 	}
+
+
+	/**
+	 * [dialog description]
+	 * @param  {[type]} dialog    [description]
+	 * @param  {[type]} container [description]
+	 * @return {[type]}           [description]
+	 */
+	function dialog(dialog, container) {
+
+		$("a").attr("disabled", "disabled");
+
+		paused = true;
+
+		$(container).show();
+
+		addTextByDelay(dialog, $(container).find("p"), 200);
+
+	}
+
+
+	/**
+	 * [addTextByDelay description]
+	 * @param {[type]} text  [description]
+	 * @param {[type]} elem  [description]
+	 * @param {[type]} delay [description]
+	 */
+	var addTextByDelay = function(text, elem, delay) {
+
+	    if (text.length <= 0) { 
+	    	return false 
+	    }
+
+        elem.append(text[0]);
+        setTimeout(
+        	function(){ 
+        		addTextByDelay(text.slice(1), elem, delay); 
+        	},delay                 
+        );
+	    
+	}
+
 
 
 	/**
@@ -149,8 +218,8 @@ var Ui = (function () {
 	 */
 	function log(data) {
 
-		var log = document.getElementById(template.log);
-		log.innerHTML += "<div>" + data + "</div>";
+		var log = $(template.log);
+		log.append("<div>" + data + "</div>");
 		log.scrollTop = log.scrollHeight;
 		return false;
 
@@ -164,8 +233,8 @@ var Ui = (function () {
 	 */
 	function refreshMoney() {
 
-		document.getElementById(template.money).innerHTML  = "";
-		document.getElementById(template.money).innerHTML += Inventory.getMoney() + "$";
+		$(template.money).html("");
+		$(template.money).html(Inventory.getMoney() + "$");
 
 	}
 
@@ -178,7 +247,7 @@ var Ui = (function () {
 	 */
 	function dispatchGifting(elem) {
 
-		var qty = elem.getAttribute("data-qty");
+		var qty  = elem.getAttribute("data-qty");
 		var item = elem.getAttribute("data-item");
 
 		if (qty < 1) {
@@ -211,6 +280,7 @@ var Ui = (function () {
 		Inventory.transaction(item, qty);
 
 		return false;
+
 	}
 
 
@@ -220,7 +290,7 @@ var Ui = (function () {
 	 * @return
 	 */
 	function refreshClock() {
-		document.getElementById(template.clock).innerHTML = Global.getClock();
+		$(template.clock).html(Global.getClock());
 	}
 
 
@@ -231,9 +301,9 @@ var Ui = (function () {
 	 */
 	function refreshCalendar() {
 
-		document.getElementById(template.calendar.day).innerHTML = Global.getDay();
-		document.getElementById(template.calendar.month).innerHTML = Global.getMonth();
-		document.getElementById(template.calendar.year).innerHTML = Global.getYear();
+		$(template.calendar.day).html(Global.getDay());
+		$(template.calendar.month).html(Global.getMonth());
+		$(template.calendar.year).html(Global.getYear());
 
 	}
 
@@ -246,7 +316,7 @@ var Ui = (function () {
 	 */
 	function setLocation( val ) {
 
-		document.getElementById(template.location).className = val;
+		$(template.location).attr("class", val);
 
 	}
 
@@ -260,11 +330,29 @@ var Ui = (function () {
 	function setCat( val ) {
 
 		if (!val) {
-			document.getElementById(template.heart).style.display = "none";
+			$(template.heart).css("display", "none");
 		}
-		
-		document.getElementById(template.cat).className = val;
 
+		$(template.cat).attr("class", val);
+
+	}
+
+
+	/**
+	 * [setCatDialog description]
+	 * @param {[type]} cat [description]
+	 */
+	function setCatDialog( cat ) {
+		$(template.dialog.cat.title).text(cat.name);
+	}
+
+
+	function daytime() {
+		$("body").removeClass("nighttime").addClass("daytime");
+	}
+
+	function nighttime() {
+		$("body").removeClass("daytime").addClass("nighttime");
 	}
 
 	return { 
@@ -277,10 +365,13 @@ var Ui = (function () {
   		populateMenu : populateMenu,
   		refreshMoney : refreshMoney,
   		log : log,
-  		setHeart : setHeart
+  		setHeart : setHeart,
+  		dialog : dialog,
+  		setCatDialog : setCatDialog,
+  		daytime : daytime,
+  		nighttime : nighttime,
+  		paused : function() { return paused; }
 
   	};
 
 }());
-
-Ui.init();

@@ -7,8 +7,6 @@
 
 <body>
 
-	<header><h1>Cat Dating Simulator</h1></header>
-
 	<aside>
 		<time>
 			<span id="clock">00:00</span>
@@ -30,11 +28,11 @@
 				<ul id="menu-location"></ul>
 			</li>
 			<li>
-				<em>Shop</em>
+				<em>Buy items</em>
 				<ul id="menu-shop"></ul>
 			</li>
 			<li>
-				<em>Give</em>
+				<em>Give items</em>
 				<ul id="menu-inventory"></ul>
 			</li>
 			<li><a href="#" onClick="Locations.handlePetting(); return false;">Pet cat</a></li>
@@ -45,8 +43,13 @@
 	</menu>
 
 	<section>
+		<div id="player"></div>
 		<div id="location" class="home"></div>
 		<div id="cat"></div>
+		<div id="cat-dialog" class="dialog right">
+			<h4></h4>
+			<p></p>
+		</div>
 		<div id="heart" style="display:none;"></div>
 	</section>
 
@@ -56,6 +59,7 @@
 	
 </body>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="modules/global.js"></script>
 <script src="modules/cats.js"></script>
 <script src="modules/locations.js"></script>
@@ -63,5 +67,11 @@
 <script src="modules/ui.js"></script>
 <script src="modules/player.js"></script>
 <script src="modules/events.js"></script>
+
+<script>
+$( document ).ready(function() {
+	Ui.init();
+});
+</script>
 
 </html>

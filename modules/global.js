@@ -46,10 +46,18 @@ var Global = (function () {
 
 		setInterval(function(){ 
 
+			if (Ui.paused()) { return false; }
+
 			currentTime += 600;
 
 			// trigger player energy loss
 			Players.player().tire(0.5);
+
+			Ui.nighttime();
+
+			if (currentTime >= 21600 && currentTime <= 72000) {
+				Ui.daytime();
+			}
 
 			// day has passed
 			if (currentTime >= 86400) {

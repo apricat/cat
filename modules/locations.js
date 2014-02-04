@@ -85,6 +85,11 @@ var Locations = (function () {
 
 		Ui.setCat(this.cat.name.replace(/ /g,'').toLowerCase());
 		Ui.setHeart(this.cat);
+		Ui.setCatDialog(this.cat);
+
+		this.cat.say("Miaw miaw miaw.");
+
+		Events.listener(this.cat);
 
 		return false;
 
