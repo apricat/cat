@@ -84,8 +84,8 @@ var Players = (function () {
 		}
 
 		// Warn user that health is becoming low
-		if (this.health <= 25 && this.status === STATUS_HEALTHY && this.status !== STATUS_SICK) { 
-			this.status = STATUS_TIRED; 
+		if (this.health <= 25 && this.status !== STATUS_SICK) { 
+			this.status = STATUS_TIRED;
 		}
 
 		// Increase energy loss if sick
@@ -100,7 +100,7 @@ var Players = (function () {
 
 
 	/**
-	 * Reccupera health and energy
+	 * Reccuperate health and energy
 	 * 
 	 * @param  int qty
 	 * @return

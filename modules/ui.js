@@ -99,12 +99,12 @@ var Ui = (function () {
 
 		$(template.health).css("width", Players.player().health + "%");
 
-		if (Players.player().status === 1) {
+		if (Players.player().status === 2) {
 			$(template.health).attr("class", "tired");
 			return false;
 		}
 
-		if (Players.player().status === 2) {
+		if (Players.player().status === 1) {
 			$(template.health).attr("class", "sick")
 			return false;
 		}
