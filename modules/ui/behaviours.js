@@ -130,7 +130,7 @@ var Behaviours = (function () {
 				return false;
 			}
 
-			Players.player.work();
+			Players.player().work();
 
 			return false;
 
@@ -145,7 +145,7 @@ var Behaviours = (function () {
 				return false;
 			}
 
-			Players.player.sleep();
+			Players.player().sleep();
 
 			return false;
 

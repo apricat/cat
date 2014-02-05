@@ -67,6 +67,12 @@ footer {
 	height: 4px;
 	background: #000;
 }
+#health.tired {
+	background-color: yellow;
+}
+#health.sick {
+	background-color: red;
+}
 
 #location {
 	width: 100%;
