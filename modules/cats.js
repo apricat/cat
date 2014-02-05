@@ -94,9 +94,13 @@ var Cats = (function () {
 	 * @param  string dialog 
 	 * @return bool
 	 */
-	function say( dialog ) {
+	function say( key ) {
 
-		Dialog.say( dialog , "#cat-dialog" );
+		var lvl = Math.floor(this.affection / 25);
+		
+		if (lvl < 0) { lvl = 0; }
+
+		Dialog.say( this.dialog[lvl][key] , "#cat-dialog" );
 
 		return false;
 
@@ -166,12 +170,13 @@ var Cats = (function () {
 	 * @param string loves     Item cat loves
 	 * @param string hates     Item cat hates
 	 */
-  	function Cat( name, affection, loves, hates ) {
+  	function Cat( name, affection, loves, hates, dialog) {
 
   		this.name      = name;
 		this.affection = affection;
 	    this.loves     = loves;
 	    this.hates     = hates;
+	    this.dialog    = dialog;
 	    this.display   = display;
 	    this.give      = give;
 	    this.pet       = pet;
@@ -183,6 +188,33 @@ var Cats = (function () {
 
 	}
 
+	/**
+	 * TEMPORARY
+	 * @return {[type]} [description]
+	 */
+	function fetchDialog() {
+
+        return {
+        	0 : {
+				"hello" : "...",
+				"pet"   : "Hiss",
+			},
+			1 : {
+				"hello" : ">:3",
+				"pet"   : "...",
+			},
+			2 : {
+				"hello" : "???",
+				"pet"   : ":3",
+			},
+			3 : {
+				"hello" : "Miaw miaw miaw!",
+				"pet"   : "Prrr Prrr",
+			}
+		}
+
+    }
+
 
 	/**
 	 * Initiates cat objects
@@ -192,19 +224,19 @@ var Cats = (function () {
 	function init() {
 
 		// schedule: Mon-Tue-Wed-Fri | 12-21
-		cat[0] = new Cat("Fat Cat", 76, "Tuna", "Laser pointer");
+		cat[0] = new Cat("Fat Cat", 76, "Tuna", "Laser pointer", fetchDialog());
 
 		// schedule: Tue-Wed-Fri-Sat | 9-17
-		cat[1] = new Cat("Cute Cat", -40, "Birds", "Mouse toy");
+		cat[1] = new Cat("Cute Cat", -40, "Birds", "Mouse toy", fetchDialog());
 
 		// schedule: Mon-Sat-Sun | 20-0
-		cat[2] = new Cat("Evil Cat", -80, "Laser pointer", "Tuna");
+		cat[2] = new Cat("Evil Cat", -80, "Laser pointer", "Tuna", fetchDialog());
 
 		// schedule: Wed-Thu-Sun | 11-16
-		cat[3] = new Cat("Shy Cat", -160, "Mouse toy", "Birds");
+		cat[3] = new Cat("Shy Cat", -160, "Mouse toy", "Birds", fetchDialog());
 
 		return false;
-		
+
 	}
 
   	return { 

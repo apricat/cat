@@ -84,9 +84,10 @@ var Locations = (function () {
 
 		Ui.setCat(this.cat.name.replace(/ /g,'').toLowerCase());
 		Ui.setHeart(this.cat);
+
 		Dialog.initCatDialog(this.cat);
 
-		this.cat.say("Miaw miaw miaw.");
+		setTimeout(function() { Locations.current().cat.say("hello"); }, 750);
 
 		Events.listener(this.cat);
 

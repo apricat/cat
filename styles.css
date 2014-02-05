@@ -23,6 +23,10 @@ menu {
 	background: #FFF;
 }
 
+a[disabled] {
+	opacity: 0.5;
+}
+
 section {
 	position: absolute;
 	top: 0;
@@ -151,6 +155,9 @@ footer {
 .dialog.right {
 	left: auto;
 	right: 20%;
+}
+.dialog [data-action='accept'] {
+	display: none;
 }
 
 #heart{

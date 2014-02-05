@@ -2,17 +2,13 @@ var Behaviours = (function () {
 
 	var template = {
 		"dialog" : {
-			"container" : ".dialog"
+			"container" : ".dialog",
+			"accept" : ".dialog [data-action='accept']"
 		}
 	}
 
 	function init() {
 
-		$(document).on("click", "a:disabled", function(e) {
-
-			return false;
-
-		});
 
 		$(document).on("keypress", function(e) {
 
@@ -20,12 +16,24 @@ var Behaviours = (function () {
 
 			if (e.which === 13) {
 
-				$("a").removeAttr("disabled");
-				$(template.dialog.container).hide();
+				$("menu a").removeAttr("disabled");
+				$(template.dialog.container + "," + template.dialog.accept).hide();
 
-				paused = false;
+				Ui.pause(false);
 
 			}
+
+		});
+
+
+		$(document).on("click", template.dialog.accept, function(e) {
+
+			e.preventDefault();
+
+			$("menu a").removeAttr("disabled");
+			$(template.dialog.container + "," + template.dialog.accept).hide();
+
+			Ui.pause(false);
 
 		});
 
@@ -33,6 +41,10 @@ var Behaviours = (function () {
 		$(document).on("click", "[data-action='give']", function(e) {
 
 			e.preventDefault();
+
+			if ($(this).attr('disabled')) {
+				return false;
+			}
 
 			var qty  = $(this).attr("data-qty"),
 				item = $(this).attr("data-item");
@@ -51,6 +63,7 @@ var Behaviours = (function () {
 
 			// Refresh menu
 			Ui.populateMenu();
+
 			return false;
 
 		});
@@ -60,10 +73,17 @@ var Behaviours = (function () {
 
 			e.preventDefault();
 
+			if ($(this).attr('disabled')) {
+				return false;
+			}
+
 			var qty  = $(this).attr("data-qty"),
 				item = $(this).attr("data-item");
 
 			Inventory.transaction(item, qty);
+
+			// Refresh menu
+			Ui.populateMenu();
 
 			return false;
 
@@ -73,6 +93,10 @@ var Behaviours = (function () {
 		$(document).on("click", "[data-action='go']", function(e) {
 
 			e.preventDefault();
+
+			if ($(this).attr('disabled')) {
+				return false;
+			}
 
 			var id = $(this).attr("data-location");
 
@@ -87,6 +111,10 @@ var Behaviours = (function () {
 
 			e.preventDefault();
 
+			if ($(this).attr('disabled')) {
+				return false;
+			}
+
 			Locations.handlePetting();
 
 			return false;
@@ -98,6 +126,10 @@ var Behaviours = (function () {
 
 			e.preventDefault();
 
+			if ($(this).attr('disabled')) {
+				return false;
+			}
+
 			Players.player.work();
 
 			return false;
@@ -108,6 +140,10 @@ var Behaviours = (function () {
 		$(document).on("click", "[data-action='sleep']", function(e) {
 
 			e.preventDefault();
+
+			if ($(this).attr('disabled')) {
+				return false;
+			}
 
 			Players.player.sleep();
 

@@ -1,0 +1,16 @@
+{
+	1 : {
+		"hello" : "...",
+		"pet"   : "Hiss",
+		"give"  : { "love" : "Prrr", "hate" : "Hiss", "like" : "..."},
+	2 : {
+		"hello" : "???",
+		"pet"   : "...",
+		"give"  : { "love" : "Prrr", "hate" : "Hiss", "like" : "..."},
+	},
+	3 : {
+		"hello" : "Miaw miaw miaw!",
+		"pet"   : "Prrr Prrr",
+		"give"  : { "love" : "Prrr Prrr", "hate" : "Hiss", "like" : "Miaw."},
+	}
+}

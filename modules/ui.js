@@ -180,7 +180,9 @@ var Ui = (function () {
 	 * @return
 	 */
 	function refreshClock() {
+
 		$(template.clock).html(Global.getClock());
+
 	}
 
 
@@ -230,10 +232,19 @@ var Ui = (function () {
 	}
 
 
+	/**
+	 * [daytime description]
+	 * @return {[type]} [description]
+	 */
 	function daytime() {
 		$("body").removeClass("nighttime").addClass("daytime");
 	}
 
+
+	/**
+	 * [nighttime description]
+	 * @return {[type]} [description]
+	 */
 	function nighttime() {
 		$("body").removeClass("daytime").addClass("nighttime");
 	}
@@ -249,7 +260,8 @@ var Ui = (function () {
   		setHeart : setHeart,
   		daytime : daytime,
   		nighttime : nighttime,
-  		paused : function() { return paused; }
+  		paused : function() { return paused; },
+  		pause : function(status) { paused = status; }
 
   	};
 

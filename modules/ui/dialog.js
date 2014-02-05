@@ -4,6 +4,7 @@ var Dialog = (function () {
 			"dialog" : {
 				"container" : ".dialog",
 				"text" : ".dialog p",
+				"accept" : ".dialog [data-action='accept']",
 				"cat" : {
 					"title" : ".dialog h4"
 				}
@@ -18,15 +19,15 @@ var Dialog = (function () {
 	 */
 	function say(dialog, container) {
 
-		$("a").attr("disabled", "disabled");
+		$("menu a").attr("disabled", "disabled");
 
 		$(container).find("p").text("");
 
-		paused = true;
+		Ui.pause(true);
 
 		$(container).show();
 
-		addTextByDelay(dialog, $(container).find("p"), 200);
+		addTextByDelay(dialog, $(container).find("p"), 100);
 
 	}
 
@@ -44,10 +45,17 @@ var Dialog = (function () {
 	    }
 
         elem.append(text[0]);
+
         setTimeout(
-        	function(){ 
-        		addTextByDelay(text.slice(1), elem, delay); 
-        	},delay                 
+        	function() {
+
+        		if (text.slice(1) == "") {
+        			$(template.dialog.accept).show();
+        		}
+
+        		addTextByDelay(text.slice(1), elem, delay);
+
+        	}, delay                 
         );
 	    
 	}
