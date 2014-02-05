@@ -45,6 +45,19 @@ var Inventory = (function () {
     }
 
 
+    function pickRandomItem() {
+
+        var result;
+        var count = 0;
+
+        for (var prop in inventory)
+            if (Math.random() < 1/++count)
+               result = prop;
+        return result;
+
+    }
+
+
     /**
      * [removeQty description]
      * @param  {[type]} item  [description]
@@ -128,7 +141,9 @@ var Inventory = (function () {
   		init : init,
         transaction : transaction,
         removeQty : removeQty,
-        addMoney : addMoney
+        addMoney : addMoney,
+        pickRandomItem : function() {return pickRandomItem(); },
+        addQty : addQty
 
   	};
 }());

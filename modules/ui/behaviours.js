@@ -122,7 +122,7 @@ var Behaviours = (function () {
 		});
 
 
-		$(document).on("click", "[data-action='work']", function(e) {
+		$(document).on("click", "[data-action='scavange']", function(e) {
 
 			e.preventDefault();
 
@@ -130,7 +130,8 @@ var Behaviours = (function () {
 				return false;
 			}
 
-			Players.player().work();
+			Players.player().scavange();
+			Ui.populateMenu();
 
 			return false;
 

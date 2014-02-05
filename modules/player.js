@@ -25,8 +25,8 @@ var Players = (function () {
   		this.name        = name;
   		this.appearance  = appearance;
   		this.cat         = cat;
-  		this.work        = work;
-  		this.job         = { "title" : "waitress", "wage" : 6, "shift" : 4, "energy" : 60, "startsAt" : 10 };
+  		this.scavange    = scavange;
+  		this.hunt        = { "time" : 4, "energy" : 60 };
   		this.health      = 100;
   		this.tire        = tire;
   		this.sleep       = sleep;
@@ -123,7 +123,7 @@ var Players = (function () {
 	 *
 	 * @return bool
 	 */
-	function work() {
+	function scavange() {
 
 		var location = Locations.current();
 
@@ -132,23 +132,32 @@ var Players = (function () {
 			return false;
 		}
 
-		if (Global.currentTime() > (this.job.startsAt + this.job.shift + 1) * 60 * 60 || 
-			Global.currentTime() < (this.job.startsAt - 1) * 60 * 60) {
-			Global.log("You cannot attend work outside of work hours.");
+		if (!this.tire(this.hunt.energy)) {
 			return false;
 		}
 
-		if (!this.tire(this.job.energy)) {
-			return false;
-		}
-
-		Global.log("Going to work...");
+		Global.log("Going to scavange...");
 
 		// Add work hours...
-		Global.addTime( this.job.shift * 60 * 60 );
-		Inventory.addMoney( this.job.shift * this.job.wage );
+		Global.addTime( this.hunt.time * 60 * 60 );
 
-		Global.log("Back from work.");
+		var money = Math.floor((Math.random() * 20) + 1);
+
+		Global.log("Found " + money + "$.");
+		Inventory.addMoney( money );
+
+		if (Math.floor((Math.random() * 2) + 1) === 1) {
+
+			var qty = Math.floor((Math.random() * 10) + 1);
+			var item = Inventory.pickRandomItem();
+
+			Global.log("Found " + qty + " " + item + ".");
+
+			Inventory.addQty( item, qty );
+			return false;
+		}
+
+		Global.log("Didn't find any items...");
 
 		return false;
 
