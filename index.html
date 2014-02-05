@@ -35,9 +35,9 @@
 				<em>Give items</em>
 				<ul id="menu-inventory"></ul>
 			</li>
-			<li><a href="#" onClick="Locations.handlePetting(); return false;">Pet cat</a></li>
-			<li><a href="#" onClick="Players.player().work(); return false;">Go to work</a></li>
-			<li><a href="#" onClick="Players.player().sleep(); return false;">Go to sleep</a></li>
+			<li><a href="#" data-action="pet">Pet cat</a></li>
+			<li><a href="#" data-action="work">Go to work</a></li>
+			<li><a href="#" data-action="sleep">Go to sleep</a></li>
 		</ul>
 
 	</menu>
@@ -65,6 +65,8 @@
 <script src="modules/locations.js"></script>
 <script src="modules/inventory.js"></script>
 <script src="modules/ui.js"></script>
+<script src="modules/ui/behaviours.js"></script>
+<script src="modules/ui/dialog.js"></script>
 <script src="modules/player.js"></script>
 <script src="modules/events.js"></script>
 

@@ -26,8 +26,6 @@ var Cats = (function () {
 	 */
 	function display() {
 
-		Global.log( this.name + "'s affection for you is at " + this.affection );
-
 		return false;
 
 	}
@@ -98,7 +96,7 @@ var Cats = (function () {
 	 */
 	function say( dialog ) {
 
-		Ui.dialog( dialog , "#cat-dialog" );
+		Dialog.say( dialog , "#cat-dialog" );
 
 		return false;
 

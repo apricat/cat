@@ -7,8 +7,7 @@ var Locations = (function () {
 
 
 	var location = [];
-
-	var current = null;
+	var current  = null;
 
 
 	/**
@@ -85,7 +84,7 @@ var Locations = (function () {
 
 		Ui.setCat(this.cat.name.replace(/ /g,'').toLowerCase());
 		Ui.setHeart(this.cat);
-		Ui.setCatDialog(this.cat);
+		Dialog.initCatDialog(this.cat);
 
 		this.cat.say("Miaw miaw miaw.");
 
@@ -103,26 +102,19 @@ var Locations = (function () {
 	 */
 	function go() {
 
-		var distance = this.distance;
-
-		if (current.name !== "Home") {
-			distance = this.distance + current.distance;
+		if (current.name == this.name) {
+			Ui.log("You are already there...");
+			return false;
 		}
 
-		Global.addTime( distance );
-
 		this.display();
+
 		this.encounter();
 
 		current = this;
 
 		return false;
 
-	}
-
-
-	function getCurrent() {
-		return current;
 	}
 
 
@@ -164,7 +156,7 @@ var Locations = (function () {
 
   		init : init,
   		location : location,
-  		current : function() { return getCurrent(); },
+  		current : function() { return current; },
   		handleGifting : handleGifting,
   		handlePetting : handlePetting
 

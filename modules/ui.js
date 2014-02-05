@@ -52,25 +52,6 @@ var Ui = (function () {
 		// init clock
 		refreshClock();
 
-		behaviours();
-
-	}
-
-
-	function behaviours() {
-
-		$(document).on("keypress", function(e){
-
-			e.preventDefault();
-
-			if (e.which === 13) {
-				$("a").removeAttr("disabled");
-				$(template.dialog.container).hide();
-				paused = false;
-			}
-
-		});
-
 	}
 
 
@@ -82,22 +63,18 @@ var Ui = (function () {
 	function populateMenu() {
 
 		// Clear menu
-		$(template.menu.inventory).html("");
-		$(template.menu.shop).html("");
-		$(template.menu.location).html("");
+		$(template.menu.inventory + "," + template.menu.shop + "," + template.menu.location).html("");
 
 		// Populate inventory
 		var items = Inventory.getItems();
 
 		for (var item in items) {
 
-			if (!items[item]["name"]) { break; }
-
-			$(template.menu.shop).append('<li><a href="#" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="1" onClick="Ui.dispatchTransaction(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a></li>');
+			$(template.menu.shop).append('<li><a href="#" data-action="buy" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="1">'+ items[item]["name"] +'</a></li>');
 			
 			if (items[item]["qty"] > 0) {
 			
-				$(template.menu.inventory).append('<li><a href="#" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="'+items[item]["qty"]+'" onClick="Ui.dispatchGifting(this); Ui.populateMenu(); return false;">'+ items[item]["name"] +'</a><span>'+ items[item]["qty"] +'</span></li>');
+				$(template.menu.inventory).append('<li><a href="#" data-action="give" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="'+items[item]["qty"]+'">'+ items[item]["name"] +'</a><span>'+ items[item]["qty"] +'</span></li>');
 			
 			}
 
@@ -106,7 +83,7 @@ var Ui = (function () {
 		// Populate location list
 		for (var i = 0; i < Locations.location.length; i++) {
 
-			$(template.menu.location).append('<li><a href="#" onClick="Locations.location['+i+'].go(); return false;">'+ Locations.location[i]["name"] +'</a></li>');
+			$(template.menu.location).append('<li><a href="#" data-action="go" data-location="'+i+'">'+ Locations.location[i]["name"] +'</a></li>');
 		
 		}
 
@@ -170,50 +147,6 @@ var Ui = (function () {
 
 
 	/**
-	 * [dialog description]
-	 * @param  {[type]} dialog    [description]
-	 * @param  {[type]} container [description]
-	 * @return {[type]}           [description]
-	 */
-	function dialog(dialog, container) {
-
-		$("a").attr("disabled", "disabled");
-
-		$(container).find("p").text("");
-
-		paused = true;
-
-		$(container).show();
-
-		addTextByDelay(dialog, $(container).find("p"), 200);
-
-	}
-
-
-	/**
-	 * [addTextByDelay description]
-	 * @param {[type]} text  [description]
-	 * @param {[type]} elem  [description]
-	 * @param {[type]} delay [description]
-	 */
-	var addTextByDelay = function(text, elem, delay) {
-
-	    if (text.length <= 0) { 
-	    	return false 
-	    }
-
-        elem.append(text[0]);
-        setTimeout(
-        	function(){ 
-        		addTextByDelay(text.slice(1), elem, delay); 
-        	},delay                 
-        );
-	    
-	}
-
-
-
-	/**
 	 * [log description]
 	 * @param  {[type]} data [description]
 	 * @return {[type]}      [description]
@@ -237,51 +170,6 @@ var Ui = (function () {
 
 		$(template.money).html("");
 		$(template.money).html(Inventory.getMoney() + "$");
-
-	}
-
-
-	/**
-	 * Dispatches location gifting
-	 * 
-	 * @param obj elem
-	 * @return bool
-	 */
-	function dispatchGifting(elem) {
-
-		var qty  = elem.getAttribute("data-qty");
-		var item = elem.getAttribute("data-item");
-
-		if (qty < 1) {
-			return false;
-		}
-
-		// Validates with location if cat available
-		if (!Locations.handleGifting(item)) {
-			return false;
-		}
-
-		// Removes item from inventory
-		Inventory.removeQty(item, 1);
-		return false;
-
-	}
-
-
-	/**
-	 * Dispatches inventory transaction
-	 * 
-	 * @param  obj elem 
-	 * @return bool
-	 */
-	function dispatchTransaction(elem) {
-
-		var qty = elem.getAttribute("data-qty");
-		var item = elem.getAttribute("data-item");
-
-		Inventory.transaction(item, qty);
-
-		return false;
 
 	}
 
@@ -342,15 +230,6 @@ var Ui = (function () {
 	}
 
 
-	/**
-	 * [setCatDialog description]
-	 * @param {[type]} cat [description]
-	 */
-	function setCatDialog( cat ) {
-		$(template.dialog.cat.title).text(cat.name);
-	}
-
-
 	function daytime() {
 		$("body").removeClass("nighttime").addClass("daytime");
 	}
@@ -364,14 +243,10 @@ var Ui = (function () {
   		init : init,
   		setLocation : setLocation,
   		setCat : setCat,
-  		dispatchGifting : dispatchGifting,
-  		dispatchTransaction : dispatchTransaction,
   		populateMenu : populateMenu,
   		refreshMoney : refreshMoney,
   		log : log,
   		setHeart : setHeart,
-  		dialog : dialog,
-  		setCatDialog : setCatDialog,
   		daytime : daytime,
   		nighttime : nighttime,
   		paused : function() { return paused; }
