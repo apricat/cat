@@ -153,9 +153,8 @@ var Ui = (function () {
 	 */
 	function log(data) {
 
-		var log = $(template.log);
-		log.append("<div>" + data + "</div>");
-		log.scrollTop = log.scrollHeight;
+		$(template.log).append("<div>" + data + "</div>");
+		document.getElementById("log").scrollTop = document.getElementById("log").scrollHeight;
 		return false;
 
 	}
