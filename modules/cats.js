@@ -51,7 +51,7 @@ var Cats = (function () {
 
 			this.affection += config.love;
 
-			this.say( "Prrr" );
+			this.say( "love" );
 
 			this.given = true;
 
@@ -65,7 +65,7 @@ var Cats = (function () {
 
 			this.affection -= config.hate;
 
-			this.say( "Hisss" );
+			this.say( "dislike" );
 
 			this.given = true;
 
@@ -75,7 +75,7 @@ var Cats = (function () {
 
 		}
 
-		this.say( "Miaw" );
+		this.say( "like" );
 
 		Global.log( this.name + " is content with your gift offering.");
 
@@ -97,7 +97,7 @@ var Cats = (function () {
 	function say( key ) {
 
 		var lvl = Math.floor(this.affection / 25);
-		
+
 		if (lvl < 0) { lvl = 0; }
 
 		Dialog.say( this.dialog[lvl][key] , "#cat-dialog" );
@@ -116,7 +116,7 @@ var Cats = (function () {
 
 		if ( this.affection < config.affection ) {
 
-			this.say( "Hisss" );
+			this.say( "dislike" );
 
 			Global.log( this.name + "'s affection level is not high enough yet...");
 
@@ -124,7 +124,7 @@ var Cats = (function () {
 
 		}
 
-		this.say( "Prr" );
+		this.say( "like" );
 
 		if ( this.petted ) {
 
@@ -198,18 +198,30 @@ var Cats = (function () {
         	0 : {
 				"hello" : "...",
 				"pet"   : "Hiss",
+				"like"  : "Umph",
+				"dislike" : "HISS!",
+				"love" : "Miaw!"
 			},
 			1 : {
 				"hello" : ">:3",
 				"pet"   : "...",
+				"like"  : "Umph",
+				"dislike" : "Hiss!",
+				"love" : "Miaw!"
 			},
 			2 : {
 				"hello" : "???",
 				"pet"   : ":3",
+				"like"  : "Miaw.",
+				"dislike" : "...",
+				"love" : "Miaw! Miaw Miaw. Miaw!"
 			},
 			3 : {
 				"hello" : "Miaw miaw miaw!",
 				"pet"   : "Prrr Prrr",
+				"like"  : ":3",
+				"dislike" : "...",
+				"love" : "Miaw! <3 <3 <3"
 			}
 		}
 
