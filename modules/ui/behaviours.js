@@ -50,6 +50,8 @@ var Behaviours = (function () {
 
 			$("[data-toggle='"+target+"']").addClass("active");
 
+			Ui.pause(true);
+
 		});
 
 
@@ -58,6 +60,8 @@ var Behaviours = (function () {
 			e.preventDefault();
 
 			$("[data-toggle]").removeClass("active");
+
+			Ui.pause(false);
 
 		});
 
