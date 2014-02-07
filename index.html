@@ -7,7 +7,7 @@
 
 <body>
 
-	<aside>
+	<header>
 		<time>
 			<span id="clock">00:00</span>
 			<span id="calendar">
@@ -18,29 +18,34 @@
 		<div id="health-container">
 			<div id="health" style="width: 100%;"></div>
 		</div>
+	
+		<menu>
+			<ul>
+				<li><a href="#" data-action="toggle" data-target="map">Go to location</a></li>
+				<li><a href="#" data-action="toggle" data-target="shop">Go to shop</a></li>
+				<li><a href="#" data-action="toggle" data-target="inventory">Open inventory</a></li>
+				<li><a href="#" data-action="pet">Pet cat</a></li>
+				<li><a href="#" data-action="scavange">Go scavange</a></li>
+				<li><a href="#" data-action="sleep">Go to sleep</a></li>
+			</ul>
+		</menu>
+
+	</header>
+
+	<aside data-toggle="map">
+		<a href="#" data-action="close">x</a>
+		<ul id="menu-location"></ul>
 	</aside>
 
-	<menu>
+	<aside data-toggle="shop">
+		<a href="#" data-action="close">x</a>
+		<ul id="menu-shop"></ul>
+	</aside>
 
-		<ul>
-			<li>
-				<em>Locations</em>
-				<ul id="menu-location"></ul>
-			</li>
-			<li>
-				<em>Buy items</em>
-				<ul id="menu-shop"></ul>
-			</li>
-			<li>
-				<em>Give items</em>
-				<ul id="menu-inventory"></ul>
-			</li>
-			<li><a href="#" data-action="pet">Pet cat</a></li>
-			<li><a href="#" data-action="scavange">Go scavange</a></li>
-			<li><a href="#" data-action="sleep">Go to sleep</a></li>
-		</ul>
-
-	</menu>
+	<aside data-toggle="inventory">
+		<a href="#" data-action="close">x</a>
+		<ul id="menu-inventory"></ul>
+	</aside>
 
 	<section>
 		<div id="player"></div>

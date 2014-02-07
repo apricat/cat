@@ -16,7 +16,7 @@ var Behaviours = (function () {
 
 			if (e.which === 13) {
 
-				$("menu a").removeAttr("disabled");
+				$("a").removeAttr("disabled");
 				$(template.dialog.container + "," + template.dialog.accept).hide();
 
 				Ui.pause(false);
@@ -30,10 +30,34 @@ var Behaviours = (function () {
 
 			e.preventDefault();
 
-			$("menu a").removeAttr("disabled");
+			$("a").removeAttr("disabled");
 			$(template.dialog.container + "," + template.dialog.accept).hide();
 
 			Ui.pause(false);
+
+		});
+
+
+		$(document).on("click", "[data-action='toggle']", function(e) {
+
+			e.preventDefault();
+
+			if ($(this).attr('disabled')) {
+				return false;
+			}
+
+			var target = $(this).attr("data-target");
+
+			$("[data-toggle='"+target+"']").addClass("active");
+
+		});
+
+
+		$(document).on("click", "[data-toggle] [data-action='close']", function(e) {
+
+			e.preventDefault();
+
+			$("[data-toggle]").removeClass("active");
 
 		});
 
