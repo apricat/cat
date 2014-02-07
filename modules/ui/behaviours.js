@@ -53,7 +53,7 @@ var Behaviours = (function () {
 		});
 
 
-		$(document).on("click", "[data-toggle] [data-action='close']", function(e) {
+		$(document).on("click", "[data-toggle] [data-action='close'], [data-toggle] a", function(e) {
 
 			e.preventDefault();
 

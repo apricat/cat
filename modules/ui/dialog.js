@@ -19,7 +19,7 @@ var Dialog = (function () {
 	 */
 	function say(dialog, container) {
 
-		$("menu a").attr("disabled", "disabled");
+		$("a:not(.dialog a)").attr("disabled", "disabled");
 
 		$(container).find("p").text("");
 
