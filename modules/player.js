@@ -41,7 +41,14 @@ var Players = (function () {
 	 * 
 	 * @return bool
 	 */
-	function sleep() {
+	function sleep( forced ) {
+
+		var location = Locations.current();
+
+		if (location.name !== "Home" && !forced) {
+			Global.log("You must head home first.");
+			return false;
+		}
 
 		Global.log("You went to sleep...");
 		this.reccuperate(100);
@@ -68,7 +75,7 @@ var Players = (function () {
 			Global.addTime(14400);
 
 			// Player sleeps and becomes sicks
-			this.sleep();
+			this.sleep(true);
 			Global.log("You are sick :(");
 			this.status = STATUS_SICK;
 
@@ -124,13 +131,6 @@ var Players = (function () {
 	 * @return bool
 	 */
 	function scavange() {
-
-		var location = Locations.current();
-
-		if (location.name !== "Home") {
-			Global.log("You must head home first.");
-			return false;
-		}
 
 		if (!this.tire(this.hunt.energy)) {
 			return false;

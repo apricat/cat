@@ -170,7 +170,7 @@ var Behaviours = (function () {
 				return false;
 			}
 
-			Players.player().sleep();
+			Players.player().sleep(false);
 
 			return false;
 
