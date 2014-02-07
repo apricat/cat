@@ -50,11 +50,10 @@ var Players = (function () {
 			return false;
 		}
 
-		Global.log("You went to sleep...");
 		this.reccuperate(100);
 		this.status = STATUS_HEALTHY;
 		Global.addTime(28800);
-		return false;
+		return true;
 
 	}
 
@@ -146,7 +145,7 @@ var Players = (function () {
 		Global.log("Found " + money + "$.");
 		Inventory.addMoney( money );
 
-		if (Math.floor((Math.random() * 2) + 1) === 1) {
+		if (Math.floor((Math.random() * 5) + 1) === 1) {
 
 			var qty = Math.floor((Math.random() * 10) + 1);
 			var item = Inventory.pickRandomItem();

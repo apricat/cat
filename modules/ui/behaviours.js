@@ -170,8 +170,10 @@ var Behaviours = (function () {
 				return false;
 			}
 
-			Players.player().sleep(false);
-
+			if (Players.player().sleep(false)) {
+				Global.log("You went to sleep...");
+			}
+			
 			return false;
 
 		});
