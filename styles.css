@@ -209,7 +209,7 @@ a[data-action='sleep'].active {
     -moz-transition: right 0.6s ease-in;
     -webkit-transition: right 0.6s ease-in;
 }
-.cat a {
+.cat a[data-action='pet'] {
 	position: absolute;
 	right: 25%;
 	top: 70%;
@@ -232,7 +232,7 @@ a[data-action='sleep'].active {
 .dialog {
 	position: absolute;
 	top: 20%;
-	left: 20%;
+	right: 10%;
 	width: 20%;
 	background: #FFF;
 	display: none;
@@ -241,8 +241,8 @@ a[data-action='sleep'].active {
 	-webkit-animation: bounce 1.5s infinite ease-in-out;
 }
 .dialog.right {
-	left: auto;
-	right: 20%;
+	right: auto;
+	left: 10%;
 }
 .dialog [data-action='accept'] {
 	display: none;

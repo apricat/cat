@@ -87,6 +87,7 @@ var Locations = (function () {
 
 		Dialog.initCatDialog(this.cat);
 
+		setTimeout(function() { Players.player().say("hello"); }, 750);
 		setTimeout(function() { Locations.current().cat.say("hello"); }, 750);
 
 		Events.listener(this.cat);

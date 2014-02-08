@@ -28,8 +28,12 @@ var Ui = (function () {
 			"container" : ".dialog",
 			"text" : ".dialog p",
 			"cat" : {
-				"title" : ".dialog h4"
+				"title" : ".cat .dialog h4"
+			},
+			"player" : {
+				"title" : ".player .dialog h4"
 			}
+
 		}
 	}
 
@@ -51,6 +55,8 @@ var Ui = (function () {
 
 		// init clock
 		refreshClock();
+
+		$(template.dialog.player.title).text(Players.player().name);
 
 	}
 

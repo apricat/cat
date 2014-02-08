@@ -25,6 +25,7 @@ var Players = (function () {
   		this.name        = name;
   		this.appearance  = appearance;
   		this.cat         = cat;
+  		this.say         = say;
   		this.scavange    = scavange;
   		this.hunt        = { "time" : 4, "energy" : 60 };
   		this.health      = 100;
@@ -32,6 +33,21 @@ var Players = (function () {
   		this.sleep       = sleep;
   		this.reccuperate = reccuperate;
   		this.status      = STATUS_HEALTHY;
+
+	}
+
+
+	/**
+	 * Player dialog
+	 * 
+	 * @param  string dialog 
+	 * @return bool
+	 */
+	function say( key ) {
+
+		Dialog.say( "Hi!!" , "#player-dialog" );
+
+		return false;
 
 	}
 
@@ -170,7 +186,7 @@ var Players = (function () {
 	 */
 	function init() {
 
-		player = new Player("Clo", 0, null);
+		player = new Player("Mitchal", 0, null);
 
 	}
 

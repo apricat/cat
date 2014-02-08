@@ -6,7 +6,7 @@ var Dialog = (function () {
 				"text" : ".dialog p",
 				"accept" : ".dialog [data-action='accept']",
 				"cat" : {
-					"title" : ".dialog h4"
+					"title" : ".cat .dialog h4"
 				}
 			}
 	}
