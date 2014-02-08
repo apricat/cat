@@ -25,28 +25,26 @@
 	
 		<menu>
 			<ul>
-				<li><a href="#" data-action="toggle" data-target="map">Go to location</a></li>
-				<li><a href="#" data-action="toggle" data-target="shop">Go to shop</a></li>
-				<li><a href="#" data-action="toggle" data-target="inventory">Open inventory</a></li>
-				<li><a href="#" data-action="scavange">Go scavange</a></li>
-				<li><a href="#" data-action="sleep" class="active">Go to sleep</a></li>
+				<li><a href="#" data-action="toggle" data-target="map" title="Go to a location.">Go to location</a></li>
+				<li><a href="#" data-action="toggle" data-target="shop" title="Shop.">Go to shop</a></li>
+				<li><a href="#" data-action="scavange" title="Scavange the area.">Scavange</a></li>
+				<li><a href="#" data-action="sleep" class="active" title="Go to sleep.">Sleep</a></li>
 			</ul>
 		</menu>
 
 	</header>
 
-	<aside data-toggle="map">
+	<aside data-toggle="map" data-data="map">
 		<a href="#" data-action="close">x</a>
 		<ul id="menu-location"></ul>
 	</aside>
 
-	<aside data-toggle="shop">
+	<aside data-toggle="shop" data-data="shop">
 		<a href="#" data-action="close">x</a>
 		<ul id="menu-shop"></ul>
 	</aside>
 
-	<aside data-toggle="inventory">
-		<a href="#" data-action="close">x</a>
+	<aside data-data="inventory">
 		<ul id="menu-inventory"></ul>
 	</aside>
 

@@ -40,11 +40,15 @@ var Inventory = (function () {
     function addQty( item, value ) {
         
         inventory[item]["qty"] += parseInt(value, 10);
-        Global.log(item + " added.");
+        Global.log(inventory[item]["name"] + " added.");
 
     }
 
 
+    /**
+     * [pickRandomItem description]
+     * @return {[type]} [description]
+     */
     function pickRandomItem() {
 
         var result;
@@ -72,7 +76,7 @@ var Inventory = (function () {
         }
 
         inventory[item]["qty"] -= value;
-        Global.log(item + " removed.");
+        Global.log(inventory[item]["name"] + " removed.");
         return true;
 
     }

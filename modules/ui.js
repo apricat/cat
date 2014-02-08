@@ -79,11 +79,11 @@ var Ui = (function () {
 
 		for (var item in items) {
 
-			$(template.menu.shop).append('<li><a href="#" data-action="buy" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="1">'+ items[item]["name"] +'</a></li>');
+			$(template.menu.shop).append('<li><a href="#" data-action="buy" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="1">'+ items[item]["name"] +'</a><var>'+items[item]["value"]+'</var></li>');
 			
 			if (items[item]["qty"] > 0) {
 			
-				$(template.menu.inventory).append('<li><a href="#" data-action="give" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="'+items[item]["qty"]+'">'+ items[item]["name"] +'</a><span>'+ items[item]["qty"] +'</span></li>');
+				$(template.menu.inventory).append('<li><a href="#" data-action="give" data-item="'+items[item]["name"].toLowerCase().replace(/ /g,'')+'" data-qty="'+items[item]["qty"]+'">'+ items[item]["name"] +'</a><var>'+ items[item]["qty"] +'</var></li>');
 			
 			}
 

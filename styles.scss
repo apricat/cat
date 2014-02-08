@@ -90,6 +90,14 @@ aside[data-toggle].active {
 	@include easing-transition(right, 0.6s, ease-in);
 }
 
+aside[data-data="inventory"] {
+	width: 15%;
+	position: absolute;
+	right: 5%;
+	bottom: 0;
+	height: auto;
+}
+
 a[data-action='sleep'] {
 	display: none;
 }
