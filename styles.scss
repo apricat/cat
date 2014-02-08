@@ -1,3 +1,12 @@
+/**
+ * CAT DATING SIMULATOR
+ *
+ * @author Claudine Lamothe {apricat@gmail.com}
+ */
+
+$locations : "home", "garden", "alley", "terrasse";
+$cats      : "fatcat", "cutecat", "evilcat";
+
 @mixin easing-transition($property, $duration, $easing) {
 	        transition: $property $duration $easing;
         -ms-transition: $property $duration $easing;
@@ -146,6 +155,7 @@ a[data-action='sleep'].active {
 		background: linear-gradient(to bottom,  #a90329 0%,#8f0222 44%,#6d0019 100%); /* W3C */
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
 	}
+
 }
 
 #location {
@@ -155,18 +165,13 @@ a[data-action='sleep'].active {
 	top: 0;
 	left: 0;
 	z-index: 0;
+	background-repeat: no-repeat;
 }
-#location.home {
-	background: url('img/locations/home.jpg') no-repeat;
-}
-#location.alley {
-	background: url('img/locations/alley.jpg') no-repeat;
-}
-#location.garden {
-	background: url('img/locations/garden.jpg') no-repeat;
-}
-#location.terrasse {
-	background: url('img/locations/terrasse.jpg') no-repeat;
+
+@each $location in $locations {
+  #location.#{$location} {
+    background-image: url('img/locations/#{$location}.jpg');
+  }
 }
 
 .cat {
@@ -187,29 +192,14 @@ a[data-action='sleep'].active {
 		top: 70%;
 	}
 }
-.cat.fatcat {
-	background-image: url('img/cats/fatcat.jpg');
+
+@each $cat in $cats {
+  #cat.#{$cat} {
+    background-image: url('img/cats/#{$cat}.jpg');
 	right: 0;
 	opacity: 1;
 	@include easing-transition(right, 0.6s, ease-in);
-}
-.cat.cutecat {
-	background-image: url('img/cats/cutecat.jpg');
-	right: 0;
-	opacity: 1;
-	@include easing-transition(right, 0.6s, ease-in);
-}
-.cat.evilcat {
-	background-image: url('img/cats/evilcat.jpg');
-	right: 0;
-	opacity: 1;
-	@include easing-transition(right, 0.6s, ease-in);
-}
-.cat.shycat {
-	background-image: url('img/cats/shycat.jpg');
-	right: 0;
-	opacity: 1;
-	@include easing-transition(right, 0.6s, ease-in);
+  }
 }
 
 .player {
