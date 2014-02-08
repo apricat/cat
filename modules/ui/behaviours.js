@@ -4,7 +4,8 @@ var Behaviours = (function () {
 		"dialog" : {
 			"container" : ".dialog",
 			"accept" : ".dialog [data-action='accept']"
-		}
+		},
+		"pause" : "#space"
 	}
 
 	function init() {
@@ -14,12 +15,27 @@ var Behaviours = (function () {
 
 			e.preventDefault();
 
-			if (e.which === 13) {
+			if (e.which === 13 || e.keycode === 13) {
 
 				$("a").removeAttr("disabled");
 				$(template.dialog.container + "," + template.dialog.accept).hide();
 
 				Ui.pause(false);
+
+			}
+
+			if (e.which === 32 || e.keyCode == 32) {
+
+				if ($(template.pause).hasClass("active")) {
+					$(template.pause).removeClass("active");
+					Ui.pause(false);
+					return false;
+				}
+
+				$(template.pause).addClass("active");
+				Ui.pause(true);
+
+				return false;
 
 			}
 
