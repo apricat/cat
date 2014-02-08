@@ -198,9 +198,7 @@ var Behaviours = (function () {
 				return false;
 			}
 
-			if (Players.player().sleep(false)) {
-				Global.log("You went to sleep...");
-			}
+			Players.player().sleep(false);
 			
 			return false;
 

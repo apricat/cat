@@ -74,7 +74,7 @@ var Locations = (function () {
 
 		if (!this.cat) {
 
-			Global.log( "This place is so sad without cats..." );
+			setTimeout(function() { Players.player().say("This place is so sad without cats..."); }, 750);
 			Ui.setCat("");
 			return false;
 

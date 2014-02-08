@@ -34,7 +34,8 @@ var Ui = (function () {
 				"title" : ".player .dialog h4"
 			}
 
-		}
+		},
+		"blackout" : "#blackout"
 	}
 
 	var paused = false;
@@ -165,12 +166,14 @@ var Ui = (function () {
 		$(template.log).append("<div style='display:none' data-time='" + LOG_TIME + "'>" + data + "</div>");
 
 		if ($(template.log + " div").length > 1) {
+
 			$(template.log + " div").not(":last").each(function(i) {
 				$(this).css("z-index", 200 - i);
 				$(this).animate({
-				    bottom: "+=28"
+				    bottom: "+=24"
 				}, 100, function() {});
 			});
+
 		}
 
 		$(template.log + ' > div:last').fadeIn();
@@ -193,9 +196,11 @@ var Ui = (function () {
 			$(this).attr("data-time", time);
 
 			if ($(this).attr("data-time") <= 0) {
+
 				$(this).delay(300*i).fadeOut("slow", function(){
 					$(this).remove();
 				});
+
 			}
 
 		});
@@ -276,6 +281,24 @@ var Ui = (function () {
 
 
 	/**
+	 * [blackout description]
+	 * @param  {[type]} status [description]
+	 * @return {[type]}        [description]
+	 */
+	function blackout( status ) {
+
+		if (status) {
+			$(template.blackout).fadeIn();
+			return false;
+		}
+		
+		$(template.blackout).fadeOut();
+		return false;
+
+	}
+
+
+	/**
 	 * [daytime description]
 	 * @return {[type]} [description]
 	 */
@@ -303,6 +326,7 @@ var Ui = (function () {
   		setHeart : setHeart,
   		daytime : daytime,
   		nighttime : nighttime,
+  		blackout : blackout,
   		paused : function() { return paused; },
   		pause : function(status) { paused = status; }
 

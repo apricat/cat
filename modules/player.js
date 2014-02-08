@@ -43,9 +43,9 @@ var Players = (function () {
 	 * @param  string dialog 
 	 * @return bool
 	 */
-	function say( key ) {
+	function say( dialog ) {
 
-		Dialog.say( "Hi!!" , "#player-dialog" );
+		Dialog.say( dialog , "#player-dialog" );
 
 		return false;
 
@@ -66,9 +66,22 @@ var Players = (function () {
 			return false;
 		}
 
-		this.reccuperate(100);
-		this.status = STATUS_HEALTHY;
-		Global.addTime(28800);
+		setTimeout(function() {
+			Ui.blackout(true);
+		}, 1200);
+
+        setTimeout(function() {
+
+          	Ui.blackout(false);
+
+          	Players.player().reccuperate(100);
+			Players.player().status = STATUS_HEALTHY;
+
+			Global.log("You feel rested!");
+			Global.addTime(28800);
+
+        }, 3000);
+
 		return true;
 
 	}
@@ -86,13 +99,25 @@ var Players = (function () {
 
 			Global.log("You fainted!");
 
-			// Additional time loss on top of forced sleep
-			Global.addTime(14400);
+			$("#player").addClass("faint");
 
-			// Player sleeps and becomes sicks
-			this.sleep(true);
-			Global.log("You are sick :(");
-			this.status = STATUS_SICK;
+			setTimeout(function(){
+				Ui.blackout(true);
+			}, 1200);
+
+			Players.player().health = 100;
+			Players.player().status = STATUS_SICK;
+
+			Global.addTime(14400);
+			
+	        setTimeout(function(){
+
+	          	Ui.blackout(false);
+	          	$("#player").removeClass("faint");
+
+				Global.log("You are sick :(");
+				
+			}, 3000);
 
 			return false;
 
@@ -151,10 +176,31 @@ var Players = (function () {
 			return false;
 		}
 
-		Global.log("Going to scavange...");
+		$("#player").addClass("leaving");
 
-		// Add work hours...
-		Global.addTime( this.hunt.time * 60 * 60 );
+		setTimeout(function(){
+			Ui.blackout(true);
+		}, 1200);
+		
+        setTimeout(function(){
+
+          	Ui.blackout(false);
+       
+			scavanging();
+
+			$("#player").removeClass("leaving");
+
+		}, 3000);
+
+		return false;
+
+	}
+
+
+	function scavanging() {
+
+		// Add hours...
+		Global.addTime( Players.player().hunt.time * 60 * 60 );
 
 		var money = Math.floor((Math.random() * 20) + 1);
 
@@ -173,8 +219,6 @@ var Players = (function () {
 		}
 
 		Global.log("Didn't find any items...");
-
-		return false;
 
 	}
 

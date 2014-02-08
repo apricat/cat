@@ -112,6 +112,17 @@ a[data-action='sleep'].active {
 	background: rgba(0, 0, 0, 0.6);
 }
 
+.blackout {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	background: #000;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+
 
 /**
  * LOG
@@ -141,7 +152,7 @@ a[data-action='sleep'].active {
 #health-container {
 	width: 25%;
 	height: 6px;
-	padding: 1px;
+	padding: 2px 3px;
 	border-radius: 6px;
 	box-shadow: inset 2px 2px 4px rgba(0,0,0,0.3);
 	background: #FFF;
@@ -249,9 +260,16 @@ a[data-action='sleep'].active {
 	z-index: 1;
 	background-position: right bottom;
 	background-repeat: no-repeat;
+	@include easing-transition(all, 0.6s, ease-in);
 }
 .player.player-1 {
 	background: url("img/player/player-1.png") no-repeat;
+}
+.player.faint {
+	bottom: -100%;
+}
+.player.leaving {
+	left: -100%;
 }
 
 

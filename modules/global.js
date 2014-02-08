@@ -96,8 +96,6 @@ var Global = (function () {
 	 */
 	function addTime( value ) {
 
-		Global.log( clock(value) + " hours added to the clock.");
-
 		if (currentTime + value > 86400) {
 
 			newDay(currentTime + value - 86400)

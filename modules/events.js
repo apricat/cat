@@ -11,8 +11,7 @@
     	return { 
 
     		init : init,
-        listener: listener
-
+        listener : listener
     	};
   }());
 
