@@ -1,6 +1,7 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
+	<meta charset="utf-8" />
 	<title>Cat Dating Simulator :3</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
@@ -8,15 +9,18 @@
 <body>
 
 	<header>
+
 		<time>
 			<span id="clock">00:00</span>
 			<span id="calendar">
 				<span id="month">Spring</span> <span id="day">1</span>, Year <span id="year">1</span>
 			</span>
 		</time>
+
 		<var id="money"></var>
-		<div id="health-container">
-			<div id="health" style="width: 100%;"></div>
+
+		<div id="health-container" class="container">
+			<div id="health" class="health healthy" style="width: 100%;"></div>
 		</div>
 	
 		<menu>
@@ -25,7 +29,7 @@
 				<li><a href="#" data-action="toggle" data-target="shop">Go to shop</a></li>
 				<li><a href="#" data-action="toggle" data-target="inventory">Open inventory</a></li>
 				<li><a href="#" data-action="scavange">Go scavange</a></li>
-				<li><a href="#" data-action="sleep">Go to sleep</a></li>
+				<li><a href="#" data-action="sleep" class="active">Go to sleep</a></li>
 			</ul>
 		</menu>
 
@@ -61,13 +65,13 @@
 		</div>
 
 		<div id="cat" class="cat">
-		
+
 			<a href="#" data-action="pet" title="Pet cat">
 				<img src="img/menu/hand.jpg">
 			</a>
+
 			<div id="heart"></div>
 		
-
 			<div id="cat-dialog" class="dialog right">
 				<h4></h4>
 				<p></p>
@@ -76,7 +80,6 @@
 
 		</div>
 
-		
 		<div id="space" class="pause"></div>
 
 	</section>

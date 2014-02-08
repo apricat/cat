@@ -39,12 +39,15 @@ var Ui = (function () {
 
 	var paused = false;
 
+	const LOG_TIME = 4;
+
 	function init() {
 
 		setInterval(function(){ 
 			refreshClock();
 			refreshCalendar();
 			refreshHealth();
+			refreshLog();
 		}, 1000);
 
 		// init menu
@@ -106,16 +109,16 @@ var Ui = (function () {
 		$(template.health).css("width", Players.player().health + "%");
 
 		if (Players.player().status === 2) {
-			$(template.health).attr("class", "tired");
+			$(template.health).attr("class", "health tired");
 			return false;
 		}
 
 		if (Players.player().status === 1) {
-			$(template.health).attr("class", "sick")
+			$(template.health).attr("class", "health sick")
 			return false;
 		}
 
-		$(template.health).attr("class", "healthy");
+		$(template.health).attr("class", "health healthy");
 		return false;
 
 	}
@@ -159,10 +162,45 @@ var Ui = (function () {
 	 */
 	function log(data) {
 
-		$(template.log).append("<div>" + data + "</div>");
-		document.getElementById("log").scrollTop = document.getElementById("log").scrollHeight;
+		$(template.log).append("<div style='display:none' data-time='" + LOG_TIME + "'>" + data + "</div>");
+
+		if ($(template.log + " div").length > 1) {
+			$(template.log + " div").not(":last").each(function(i) {
+				$(this).css("z-index", 200 - i);
+				$(this).animate({
+				    bottom: "+=28"
+				}, 100, function() {});
+			});
+		}
+
+		$(template.log + ' > div:last').fadeIn();
+
 		return false;
 
+	}
+
+
+	/**
+	 * [updateLog description]
+	 * @return bool
+	 */
+	function refreshLog() {
+
+		$(template.log + " div").each(function(i) {
+
+			var time = $(this).attr("data-time") - 1;
+
+			$(this).attr("data-time", time);
+
+			if ($(this).attr("data-time") <= 0) {
+				$(this).delay(300*i).fadeOut("slow", function(){
+					$(this).remove();
+				});
+			}
+
+		});
+
+		return false;
 	}
 
 
