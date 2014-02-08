@@ -144,6 +144,14 @@ var Behaviours = (function () {
 
 			var id = $(this).attr("data-location");
 
+			if (id == 0) {
+				// going home
+				$("[data-action='sleep']").addClass("active");
+				Locations.location[id].go();
+				return false;
+			}
+
+			$("[data-action='sleep']").removeClass("active");
 			Locations.location[id].go();
 
 			return false;

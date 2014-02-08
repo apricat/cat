@@ -90,7 +90,7 @@ var Players = (function () {
 		}
 
 		// Warn user that health is becoming low
-		if (this.health <= 25 && this.status !== STATUS_SICK) { 
+		if (this.health <= 10 && this.status !== STATUS_SICK) { 
 			this.status = STATUS_TIRED;
 		}
 
