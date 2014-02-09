@@ -27,7 +27,7 @@ var Dialog = (function () {
 
 		$(container).show();
 
-		addTextByDelay(dialog, $(container).find("p"), 100);
+		addTextByDelay(dialog, $(container).find("p"), 75);
 
 	}
 

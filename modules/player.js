@@ -166,13 +166,13 @@ var Players = (function () {
 
 
 	/**
-	 * Go to work!
+	 * Get items!
 	 *
 	 * @return bool
 	 */
 	function scavange() {
 
-		if (!this.tire(this.hunt.energy)) {
+		if (this.health < this.hunt.energy) {
 			return false;
 		}
 
@@ -201,6 +201,8 @@ var Players = (function () {
 
 		// Add hours...
 		Global.addTime( Players.player().hunt.time * 60 * 60 );
+
+		Players.player().tire(Players.player().hunt.energy);
 
 		var money = Math.floor((Math.random() * 20) + 1);
 
