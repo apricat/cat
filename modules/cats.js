@@ -301,16 +301,16 @@ var Cats = (function () {
 	function init() {
 
 		// schedule: 12-21
-		cat[0] = new Cat("Fat Cat", 55, "Tuna", "Laser pointer", fetchDialog(), [7, 21]);
+		cat[0] = new Cat("Fat Cat", 55, "tuna", "laserpointer", fetchDialog(), [7, 21]);
 
 		// schedule: 9-17
-		cat[1] = new Cat("Cute Cat", 25, "Birds", "Mouse toy", fetchDialog(), [9, 17]);
+		cat[1] = new Cat("Cute Cat", 25, "birds", "mousetoy", fetchDialog(), [9, 17]);
 
 		// schedule: 20-0
-		cat[2] = new Cat("Evil Cat", -80, "Laser pointer", "Tuna", fetchDialog(), [20, 0]);
+		cat[2] = new Cat("Evil Cat", -80, "laserpointer", "tuna", fetchDialog(), [0, 7]);
 
 		// schedule: 11-16
-		cat[3] = new Cat("Shy Cat", -160, "Mouse toy", "Birds", fetchDialog(), [11, 16]);
+		cat[3] = new Cat("Shy Cat", -160, "mousetoy", "birds", fetchDialog(), [11, 16]);
 
 		return false;
 

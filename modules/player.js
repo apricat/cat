@@ -97,27 +97,7 @@ var Players = (function () {
 
 		if (this.health <= 0) {
 
-			Global.log("You fainted!");
-
-			$("#player").addClass("faint");
-
-			setTimeout(function(){
-				Ui.blackout(true);
-			}, 1200);
-
-			Players.player().health = 100;
-			Players.player().status = STATUS_SICK;
-
-			Global.addTime(14400);
-			
-	        setTimeout(function(){
-
-	          	Ui.blackout(false);
-	          	$("#player").removeClass("faint");
-
-				Global.log("You are sick :(");
-				
-			}, 3000);
+			fainted();
 
 			return false;
 
@@ -142,6 +122,46 @@ var Players = (function () {
 
 		this.health -= qty;
 		return true;
+
+	}
+
+
+	/**
+	 * [fainted description]
+	 * @return {[type]} [description]
+	 */
+	function fainted() {
+
+		Ui.pause(true);
+
+		Global.log("You fainted!");
+
+		$("#player").addClass("faint");
+
+		setTimeout(function(){
+			Ui.blackout(true);
+		}, 1200);
+
+		// reset health to full
+		Players.player().health = 100;
+
+        setTimeout(function(){
+
+        	Locations.location[0].go();
+
+			Players.player().status = STATUS_SICK;
+
+			Global.addTime(14400);
+
+          	Ui.blackout(false);
+
+          	$("#player").removeClass("faint");
+
+			Global.log("You are sick :(");
+
+			Ui.pause(false);
+			
+		}, 3000);
 
 	}
 
