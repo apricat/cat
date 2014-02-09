@@ -100,7 +100,7 @@ var Cats = (function () {
 
 		if (lvl < 0) { lvl = 0; }
 
-		Dialog.say( this.dialog[lvl][key] , "#cat-dialog" );
+		Dialog.say( this.dialog[this.name.replace(/ /g,'').toLowerCase()][lvl][key] , "#cat-dialog" );
 
 		return false;
 
@@ -166,11 +166,12 @@ var Cats = (function () {
 	 * 
 	 * @param string name      Cat name
 	 * @param int    affection Starting level of affection
-	 * @param string location  Location of cat
 	 * @param string loves     Item cat loves
 	 * @param string hates     Item cat hates
+	 * @param obj    dialog
+	 * @param array  schedule
 	 */
-  	function Cat( name, affection, loves, hates, dialog) {
+  	function Cat( name, affection, loves, hates, dialog, schedule ) {
 
   		this.name      = name;
 		this.affection = affection;
@@ -181,6 +182,7 @@ var Cats = (function () {
 	    this.give      = give;
 	    this.pet       = pet;
 	    this.say       = say;
+	    this.schedule  = schedule;
 
 	    // flags for actions
 	    this.petted    = false;
@@ -195,34 +197,97 @@ var Cats = (function () {
 	function fetchDialog() {
 
         return {
-        	0 : {
-				"hello" : "...",
-				"pet"   : "Hiss",
-				"like"  : "Umph",
-				"dislike" : "HISS!",
-				"love" : "Miaw!"
-			},
-			1 : {
-				"hello" : ">:3",
-				"pet"   : "...",
-				"like"  : "Umph",
-				"dislike" : "Hiss!",
-				"love" : "Miaw!"
-			},
-			2 : {
-				"hello" : "???",
-				"pet"   : ":3",
-				"like"  : "Miaw.",
-				"dislike" : "...",
-				"love" : "Miaw! Miaw Miaw. Miaw!"
-			},
-			3 : {
-				"hello" : "Miaw miaw miaw!",
-				"pet"   : "Prrr Prrr",
-				"like"  : ":3",
-				"dislike" : "...",
-				"love" : "Miaw! <3 <3 <3"
-			}
+        	"fatcat" : {
+        		0 : {
+					"hello" : "...",
+					"pet"   : "Hiss",
+					"like"  : "Umph",
+					"dislike" : "HISS!",
+					"love" : "Miaw!"
+				},
+				1 : {
+					"hello" : ">:3",
+					"pet"   : "...",
+					"like"  : "Umph",
+					"dislike" : "Hiss!",
+					"love" : "Miaw!"
+				},
+				2 : {
+					"hello" : "???",
+					"pet"   : ":3",
+					"like"  : "Miaw.",
+					"dislike" : "...",
+					"love" : "Miaw! Miaw Miaw. Miaw!"
+				},
+				3 : {
+					"hello" : "Miaw miaw miaw!",
+					"pet"   : "Prrr Prrr",
+					"like"  : ":'3",
+					"dislike" : "...",
+					"love" : "Miaw! <3 <3 <3"
+				}
+        	},
+        	"cutecat" : {
+        		0 : {
+					"hello" : "...",
+					"pet"   : "Hiss",
+					"like"  : "Umph",
+					"dislike" : "HISS!",
+					"love" : "Miaw!"
+				},
+				1 : {
+					"hello" : ">:3",
+					"pet"   : "...",
+					"like"  : "Umph",
+					"dislike" : "Hiss!",
+					"love" : "Miaw!"
+				},
+				2 : {
+					"hello" : "???",
+					"pet"   : ":3",
+					"like"  : "Miaw.",
+					"dislike" : "...",
+					"love" : "Miaw! Miaw Miaw. Miaw!"
+				},
+				3 : {
+					"hello" : "Miaw miaw miaw!",
+					"pet"   : "Prrr Prrr",
+					"like"  : ":'3",
+					"dislike" : "...",
+					"love" : "Miaw! <3 <3 <3"
+				}
+        	},
+        	"evilcat" : {
+        		0 : {
+					"hello" : "...",
+					"pet"   : "Hiss",
+					"like"  : "Umph",
+					"dislike" : "HISS!",
+					"love" : "Miaw!"
+				},
+				1 : {
+					"hello" : ">:3",
+					"pet"   : "...",
+					"like"  : "Umph",
+					"dislike" : "Hiss!",
+					"love" : "Miaw!"
+				},
+				2 : {
+					"hello" : "???",
+					"pet"   : ":3",
+					"like"  : "Miaw.",
+					"dislike" : "...",
+					"love" : "Miaw! Miaw Miaw. Miaw!"
+				},
+				3 : {
+					"hello" : "Miaw miaw miaw!",
+					"pet"   : "Prrr Prrr",
+					"like"  : ":'3",
+					"dislike" : "...",
+					"love" : "Miaw! <3 <3 <3"
+				}
+        	}
+        	
 		}
 
     }
@@ -235,17 +300,17 @@ var Cats = (function () {
 	 */
 	function init() {
 
-		// schedule: Mon-Tue-Wed-Fri | 12-21
-		cat[0] = new Cat("Fat Cat", 76, "Tuna", "Laser pointer", fetchDialog());
+		// schedule: 12-21
+		cat[0] = new Cat("Fat Cat", 55, "Tuna", "Laser pointer", fetchDialog(), [7, 21]);
 
-		// schedule: Tue-Wed-Fri-Sat | 9-17
-		cat[1] = new Cat("Cute Cat", -40, "Birds", "Mouse toy", fetchDialog());
+		// schedule: 9-17
+		cat[1] = new Cat("Cute Cat", 25, "Birds", "Mouse toy", fetchDialog(), [9, 17]);
 
-		// schedule: Mon-Sat-Sun | 20-0
-		cat[2] = new Cat("Evil Cat", -80, "Laser pointer", "Tuna", fetchDialog());
+		// schedule: 20-0
+		cat[2] = new Cat("Evil Cat", -80, "Laser pointer", "Tuna", fetchDialog(), [20, 0]);
 
-		// schedule: Wed-Thu-Sun | 11-16
-		cat[3] = new Cat("Shy Cat", -160, "Mouse toy", "Birds", fetchDialog());
+		// schedule: 11-16
+		cat[3] = new Cat("Shy Cat", -160, "Mouse toy", "Birds", fetchDialog(), [11, 16]);
 
 		return false;
 

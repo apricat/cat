@@ -80,6 +80,12 @@ var Locations = (function () {
 
 		}
 
+		if (Global.currentTime() < this.cat.schedule[0]*3600 || Global.currentTime() > this.cat.schedule[1]*3600) {
+			setTimeout(function() { Players.player().say("There is no cat... maybe I should come back at another time..."); }, 750);
+			Ui.setCat("");
+			return false;
+		}
+
 		Global.log( "You encounter a wild " + this.cat.name );
 
 		Ui.setCat(this.cat.name.replace(/ /g,'').toLowerCase());

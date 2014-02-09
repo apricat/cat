@@ -73,7 +73,7 @@ a[data-action='sleep'].active { display: block; }
 .player.leaving { left: -100%; }
 
 /** DIALOG */
-.dialog { position: absolute; top: 20%; right: 10%; width: 20%; background: #FFF; display: none; z-index: 4; padding: 14px; -webkit-animation: bounce 1.5s infinite ease-in-out; }
+.dialog { position: absolute; top: 20%; right: 10%; width: 30%; background: #FFF; display: none; z-index: 4; padding: 14px; -webkit-animation: bounce 1.5s infinite ease-in-out; }
 .dialog [data-action='accept'] { display: none; }
 
 .dialog.right { right: auto; left: 10%; }
