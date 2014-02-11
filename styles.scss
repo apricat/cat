@@ -239,7 +239,7 @@ a[data-action='sleep'].active {
 
 @each $cat in $cats {
   #cat.#{$cat} {
-    background-image: url('img/cats/#{$cat}.jpg');
+    background-image: url('img/cats/#{$cat}.png');
 	right: 0;
 	opacity: 1;
 	@include easing-transition(right, 0.6s, ease-in);

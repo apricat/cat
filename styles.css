@@ -57,11 +57,11 @@ a[data-action='sleep'].active { display: block; }
 .cat { width: 50%; height: 100%; position: absolute; right: -100%; bottom: 0; z-index: 1; background-position: right bottom; background-repeat: no-repeat; opacity: 0; transition: right 0.6s ease-in; -ms-transition: right 0.6s ease-in; -moz-transition: right 0.6s ease-in; -webkit-transition: right 0.6s ease-in; }
 .cat a[data-action='pet'] { position: absolute; right: 25%; top: 70%; }
 
-#cat.fatcat { background-image: url("img/cats/fatcat.jpg"); right: 0; opacity: 1; transition: right 0.6s ease-in; -ms-transition: right 0.6s ease-in; -moz-transition: right 0.6s ease-in; -webkit-transition: right 0.6s ease-in; }
+#cat.fatcat { background-image: url("img/cats/fatcat.png"); right: 0; opacity: 1; transition: right 0.6s ease-in; -ms-transition: right 0.6s ease-in; -moz-transition: right 0.6s ease-in; -webkit-transition: right 0.6s ease-in; }
 
-#cat.cutecat { background-image: url("img/cats/cutecat.jpg"); right: 0; opacity: 1; transition: right 0.6s ease-in; -ms-transition: right 0.6s ease-in; -moz-transition: right 0.6s ease-in; -webkit-transition: right 0.6s ease-in; }
+#cat.cutecat { background-image: url("img/cats/cutecat.png"); right: 0; opacity: 1; transition: right 0.6s ease-in; -ms-transition: right 0.6s ease-in; -moz-transition: right 0.6s ease-in; -webkit-transition: right 0.6s ease-in; }
 
-#cat.evilcat { background-image: url("img/cats/evilcat.jpg"); right: 0; opacity: 1; transition: right 0.6s ease-in; -ms-transition: right 0.6s ease-in; -moz-transition: right 0.6s ease-in; -webkit-transition: right 0.6s ease-in; }
+#cat.evilcat { background-image: url("img/cats/evilcat.png"); right: 0; opacity: 1; transition: right 0.6s ease-in; -ms-transition: right 0.6s ease-in; -moz-transition: right 0.6s ease-in; -webkit-transition: right 0.6s ease-in; }
 
 /** PLAYER */
 .player { width: 50%; height: 100%; position: absolute; left: 0; bottom: 0; z-index: 1; background-position: right bottom; background-repeat: no-repeat; transition: all 0.6s ease-in; -ms-transition: all 0.6s ease-in; -moz-transition: all 0.6s ease-in; -webkit-transition: all 0.6s ease-in; }
