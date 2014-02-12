@@ -106,10 +106,10 @@ a[data-action='sleep'].active {
 }
 
 .daytime {
-	background: rgba(255, 255, 255, 0);
+	background: url("img/locations/day.png") repeat-x bottom left;
 }
 .nighttime {
-	background: rgba(0, 0, 0, 0.6);
+	background: url("img/locations/night.png") repeat-x bottom left;
 }
 
 .blackout {
@@ -204,12 +204,13 @@ a[data-action='sleep'].active {
 	top: 0;
 	left: 0;
 	z-index: 0;
-	background-repeat: no-repeat;
+	background-repeat: repeat-x;
+	background-position: bottom left;
 }
 
 @each $location in $locations {
   #location.#{$location} {
-    background-image: url('img/locations/#{$location}.jpg');
+    background-image: url('img/locations/#{$location}.png');
   }
 }
 
@@ -232,8 +233,8 @@ a[data-action='sleep'].active {
 
 	a[data-action='pet'] {
 		position: absolute;
-		right: 25%;
-		top: 70%;
+		right: 70%;
+		bottom: 30%;
 	}
 }
 
@@ -256,14 +257,14 @@ a[data-action='sleep'].active {
 	height: 100%;
 	position: absolute;
 	left: 0;
-	bottom: 0;
+	bottom: -120px;
 	z-index: 1;
-	background-position: right bottom;
+	background-position: left bottom;
 	background-repeat: no-repeat;
 	@include easing-transition(all, 0.6s, ease-in);
 }
 .player.player-1 {
-	background: url("img/player/player-1.png") no-repeat;
+	background-image: url("img/player/player-1.png");
 }
 .player.faint {
 	bottom: -100%;
@@ -338,8 +339,8 @@ a[data-action='sleep'].active {
  */
 #heart{
      position: absolute;
-     bottom: 20%;
-     right: 10%;
+     bottom: 5%;
+     right: 20%;
      z-index: 4; 
      width: 100px; 
      height: 90px;
