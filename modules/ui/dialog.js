@@ -1,15 +1,16 @@
 var Dialog = (function () {
 
-		var template = {
-			"dialog" : {
-				"container" : ".dialog",
-				"text" : ".dialog p",
-				"accept" : ".dialog [data-action='accept']",
-				"cat" : {
-					"title" : ".cat .dialog h4"
-				}
+	var template = {
+		"dialog" : {
+			"container" : ".dialog",
+			"text" : ".dialog p",
+			"accept" : ".dialog [data-action='accept']",
+			"cat" : {
+				"title" : ".cat .dialog h4"
 			}
+		}
 	}
+
 
 	/**
 	 * [dialog description]
@@ -46,7 +47,7 @@ var Dialog = (function () {
 
         elem.append(text[0]);
 
-        setTimeout(
+        var timed = setTimeout(
         	function() {
 
         		if (text.slice(1) == "") {
@@ -54,6 +55,7 @@ var Dialog = (function () {
         		}
 
         		addTextByDelay(text.slice(1), elem, delay);
+        		clearTimeout(timed);
 
         	}, delay                 
         );

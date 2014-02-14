@@ -74,14 +74,20 @@ var Locations = (function () {
 
 		if (!this.cat) {
 
-			setTimeout(function() { Players.player().say("This place is so sad without cats..."); }, 750);
+			var wait0 = setTimeout(function() { 
+				Players.player().say("This place is so sad without cats...");
+				clearTimeout(wait0);
+			}, 750);
 			Ui.setCat("");
 			return false;
 
 		}
 
 		if (Global.currentTime() < this.cat.schedule[0]*3600 || Global.currentTime() > this.cat.schedule[1]*3600) {
-			setTimeout(function() { Players.player().say("There is no cat... maybe I should come back at another time..."); }, 750);
+			var wait1 = setTimeout(function() { 
+				Players.player().say("There is no cat... maybe I should come back at another time...");
+				clearTimeout(wait1);
+			}, 750);
 			Ui.setCat("");
 			return false;
 		}
@@ -93,8 +99,8 @@ var Locations = (function () {
 
 		Dialog.initCatDialog(this.cat);
 
-		setTimeout(function() { Players.player().say("hello"); }, 750);
-		setTimeout(function() { Locations.current().cat.say("hello"); }, 750);
+		var wait2 = setTimeout(function() { Players.player().say("hello"); clearTimeout(wait2); }, 750);
+		var wait3 = setTimeout(function() { Locations.current().cat.say("hello"); clearTimeout(wait3); }, 750);
 
 		Events.listener(this.cat);
 

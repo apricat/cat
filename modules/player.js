@@ -66,11 +66,15 @@ var Players = (function () {
 			return false;
 		}
 
-		setTimeout(function() {
+		var start = setTimeout(function() {
+
 			Ui.blackout(true);
+
+			clearTimeout(start);
+
 		}, 1200);
 
-        setTimeout(function() {
+        var end = setTimeout(function() {
 
           	Ui.blackout(false);
 
@@ -79,6 +83,8 @@ var Players = (function () {
 
 			Global.log("You feel rested!");
 			Global.addTime(28800);
+
+			clearTimeout(end);
 
         }, 3000);
 
@@ -138,14 +144,18 @@ var Players = (function () {
 
 		$("#player").addClass("faint");
 
-		setTimeout(function(){
+		var start = setTimeout(function() {
+
 			Ui.blackout(true);
+
+			clearTimeout(start);
+
 		}, 1200);
 
 		// reset health to full
 		Players.player().health = 100;
 
-        setTimeout(function(){
+        var end = setTimeout(function() {
 
         	Locations.location[0].go();
 
@@ -160,6 +170,8 @@ var Players = (function () {
 			Global.log("You are sick :(");
 
 			Ui.pause(false);
+
+			clearTimeout(end);
 			
 		}, 3000);
 
@@ -193,22 +205,30 @@ var Players = (function () {
 	function scavange() {
 
 		if (this.health < this.hunt.energy) {
+
+			Global.log("Not enough energy to scavange.");
 			return false;
+
 		}
 
 		$("#player").addClass("leaving");
 
-		setTimeout(function(){
+		var start = setTimeout(function(){
+
 			Ui.blackout(true);
+			clearTimeout(start);
+
 		}, 1200);
 		
-        setTimeout(function(){
+        var end = setTimeout(function(){
 
           	Ui.blackout(false);
        
 			scavanging();
 
 			$("#player").removeClass("leaving");
+
+			clearTimeout(end);
 
 		}, 3000);
 
@@ -217,6 +237,10 @@ var Players = (function () {
 	}
 
 
+	/**
+	 * [scavanging description]
+	 * @return {[type]} [description]
+	 */
 	function scavanging() {
 
 		// Add hours...
@@ -231,7 +255,7 @@ var Players = (function () {
 
 		if (Math.floor((Math.random() * 5) + 1) === 1) {
 
-			var qty = Math.floor((Math.random() * 10) + 1);
+			var qty = Math.floor((Math.random() * 4) + 1);
 			var item = Inventory.pickRandomItem();
 
 			Global.log("Found " + qty + " " + item + ".");

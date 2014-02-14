@@ -275,7 +275,7 @@ var Ui = (function () {
 
 		$(template.cat).removeClass("fatcat evilcat cutecat");
 
-		window.setTimeout(function() { $(template.cat).addClass(val); }, 600);
+		var start = window.setTimeout(function() { $(template.cat).addClass(val); clearTimeout(start); }, 600);
 
 	}
 

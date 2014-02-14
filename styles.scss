@@ -120,10 +120,10 @@ a[data-action='sleep'].active {
 }
 
 .daytime {
-	background: url("img/locations/day.svg") repeat-x bottom left;
+	background: #FFF url("img/locations/day.svg") repeat-x bottom left;
 }
 .nighttime {
-	background: url("img/locations/night.png") repeat-x bottom left;
+	background: #000 url("img/locations/night.svg") repeat-x bottom left;
 }
 
 .blackout {

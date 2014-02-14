@@ -26,9 +26,9 @@ a[data-action='sleep'] { display: none; }
 
 a[data-action='sleep'].active { display: block; }
 
-.daytime { background: url("img/locations/day.svg") repeat-x bottom left; }
+.daytime { background: white url("img/locations/day.svg") repeat-x bottom left; }
 
-.nighttime { background: url("img/locations/night.png") repeat-x bottom left; }
+.nighttime { background: black url("img/locations/night.svg") repeat-x bottom left; }
 
 .blackout { position: fixed; top: 0; left: 0; display: none; background: #000; width: 100%; height: 100%; z-index: 10; }
 
