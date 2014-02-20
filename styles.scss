@@ -198,13 +198,13 @@ a[data-action='sleep'].active {
 	top: 0;
 	left: 0;
 	z-index: 0;
-	background-repeat: repeat-x;
-	background-position: bottom left;
 }
 
 @each $location in $locations {
   #location.#{$location} {
-    background-image: url('img/locations/#{$location}.png');
+    background: url('img/locations/#{$location}.svg'), url('img/locations/#{$location}.svg');
+    background-position: left bottom, right bottom;
+    background-repeat: no-repeat, no-repeat;
   }
 }
 
