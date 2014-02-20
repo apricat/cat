@@ -55,7 +55,7 @@ a[data-action='sleep'].active { display: block; }
 
 /** CATS */
 .cat { width: 50%; height: 100%; position: absolute; right: -100%; bottom: 0; z-index: 1; background-position: right bottom; background-repeat: no-repeat; opacity: 0; transition: right 0.6s ease-in; -ms-transition: right 0.6s ease-in; -moz-transition: right 0.6s ease-in; -webkit-transition: right 0.6s ease-in; }
-.cat a[data-action='pet'] { position: absolute; right: 70%; bottom: 30%; }
+.cat a[data-action='pet'] { position: absolute; right: 50%; bottom: 20%; }
 
 #cat.fatcat { background-image: url("img/cats/fatcat.svg"); right: 0; opacity: 1; transition: right 0.6s ease-in; -ms-transition: right 0.6s ease-in; -moz-transition: right 0.6s ease-in; -webkit-transition: right 0.6s ease-in; }
 
@@ -84,7 +84,7 @@ a[data-action='sleep'].active { display: block; }
 .pause.active { opacity: 0.4; transition: all 300ms cubic-bezier(0.81, 0, 0.17, 1); -ms-transition: all 300ms cubic-bezier(0.81, 0, 0.17, 1); -moz-transition: all 300ms cubic-bezier(0.81, 0, 0.17, 1); -webkit-transition: all 300ms cubic-bezier(0.81, 0, 0.17, 1); -webkit-transition-timing-function: cubic-bezier(0.81, 0, 0.17, 1); /* older webkit */ -webkit-transition-timing-function: cubic-bezier(0.81, -0.045, 0.17, 1.05); -moz-transition-timing-function: cubic-bezier(0.81, -0.045, 0.17, 1.05); -o-transition-timing-function: cubic-bezier(0.81, -0.045, 0.17, 1.05); transition-timing-function: cubic-bezier(0.81, -0.045, 0.17, 1.05); /* custom */ }
 
 /** @TODO: change heart to png */
-#heart { position: absolute; bottom: 5%; right: 20%; z-index: 4; width: 100px; height: 90px; margin-top: 10px; display: none; }
+#heart { position: absolute; bottom: 0%; right: 2%; z-index: 4; width: 100px; height: 90px; margin-top: 10px; display: none; }
 
 #heart:before, #heart:after { position: absolute; content: ""; left: 54px; top: 0; width: 52px; height: 80px; background: #000; border-radius: 50px 50px 0 0; }
 
